@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
+using MK_KupSkorer.Data;
 using Owin;
-using MK_KupSkorer.MVC.Models;
-using MK_KupSkorer.MVC.Data;
+using System;
 
 namespace MK_KupSkorer.MVC
 {
@@ -35,7 +33,7 @@ namespace MK_KupSkorer.MVC
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.

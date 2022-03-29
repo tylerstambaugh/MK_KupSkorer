@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MK_KupSkorer.Data
 {
@@ -12,7 +9,10 @@ namespace MK_KupSkorer.Data
         [Key]
         public int RaceId { get; set; }
         public DateTime RaceDateTime { get; set; }
+        [Required]
+        [ForeignKey("Kup")]
         public int KupId { get; set; }
+        public virtual Kup Kup { get; set; }
 
     }
 }

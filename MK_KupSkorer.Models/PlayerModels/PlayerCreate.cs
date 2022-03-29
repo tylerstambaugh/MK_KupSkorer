@@ -1,15 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MK_KupSkorer.Data
+namespace MK_KupSkorer.Models.PlayerModels
 {
-    public class Player
+    public class PlayerCreate
     {
-        [Key]
-        public int PlayerId { get; set; }
-
-        [ForeignKey("ApplicationUser")]
-        public string UserID { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
@@ -27,12 +21,5 @@ namespace MK_KupSkorer.Data
         [MinLength(2, ErrorMessage = "Nickname must be at least two characters.")]
         [MaxLength(20, ErrorMessage = "Nickname cannot exceed 20 characters.")]
         public string Nickname { get; set; }
-
-        [Display(Name = "Total Points")]
-        public double TotalPoints { get; set; }
-
-        [Display(Name = "Total Bonus Points")]
-        public int TotalBonusPoints { get; set; }
-
     }
 }

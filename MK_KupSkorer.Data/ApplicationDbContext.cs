@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using MK_KupSkorer.Data;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace MK_KupSkorer.MVC.Data
+namespace MK_KupSkorer.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

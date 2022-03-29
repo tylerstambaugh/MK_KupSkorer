@@ -54,11 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KupService.cs" />
+    <Compile Include="PlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RaceService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MK_KupSkorer.Data\MK_KupSkorer.Data.csproj">
+      <Project>{3D2B1F62-FFBA-4A24-88C5-D7DDE9F05FF0}</Project>
+      <Name>MK_KupSkorer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MK_KupSkorer.Models\MK_KupSkorer.Models.csproj">
+      <Project>{34F864BD-3B3A-49C3-ACDC-A761714D4CA2}</Project>
+      <Name>MK_KupSkorer.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
