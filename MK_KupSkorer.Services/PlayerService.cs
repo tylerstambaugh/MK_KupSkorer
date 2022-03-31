@@ -26,6 +26,7 @@ namespace MK_KupSkorer.Services
                     LastName = playerCreateModel.LastName,
                     Nickname = playerCreateModel.Nickname
                 };
+                ctx.Players.Add(playerToCreate);
                 return ctx.SaveChanges() == 1;
             }
         }

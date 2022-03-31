@@ -57,20 +57,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KupModels\KupCreate.cs" />
+    <Compile Include="KupModels\KupDetail.cs" />
+    <Compile Include="KupModels\KupListItem.cs" />
+    <Compile Include="KupModels\UpdateKup.cs" />
     <Compile Include="PlayerModels\PlayerCreate.cs" />
     <Compile Include="PlayerModels\PlayerDetail.cs" />
     <Compile Include="PlayerModels\PlayerListItem.cs" />
     <Compile Include="PlayerModels\UpdatePlayerAttributes.cs" />
     <Compile Include="PlayerModels\UpdatePlayerPoints.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RaceModels\RaceCreate.cs" />
+    <Compile Include="RaceModels\RaceDetail.cs" />
+    <Compile Include="RaceModels\RaceListItem.cs" />
+    <Compile Include="RaceModels\UpdateRace.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="KupModels\" />
-    <Folder Include="RaceModels\" />
+    <ProjectReference Include="..\MK_KupSkorer.Data\MK_KupSkorer.Data.csproj">
+      <Project>{3D2B1F62-FFBA-4A24-88C5-D7DDE9F05FF0}</Project>
+      <Name>MK_KupSkorer.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

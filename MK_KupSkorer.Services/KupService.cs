@@ -1,12 +1,115 @@
-﻿using System;
+﻿using MK_KupSkorer.Contracts;
+using MK_KupSkorer.Data;
+using MK_KupSkorer.Models.KupModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MK_KupSkorer.Services
 {
-    internal class KupService
+    public class KupService : IKupService
     {
+        //CRUD operations to the DB for the Kup models
+
+        public bool CreateKup(KupCreate kupCreateModel)
+        {
+            if (kupCreateModel == null)
+                return false;
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var kupToCreate = new Kup
+                {
+                    KupDateTime = DateTime.Now,
+                    Player1Id = kupCreateModel.Player1Id,
+                    Player2Id = kupCreateModel.Player2Id,
+                    Player3Id = kupCreateModel.Player3Id,
+                    Player4Id = kupCreateModel.Player4Id
+                };
+                ctx.Kups.Add(kupToCreate);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<KupListItem> GetKupListItems()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var queryListOfKups = ctx.Kups
+                    .Select(k => new KupListItem
+                    {
+                        KupId = k.KupId,
+                        KupDateTime = k.KupDateTime
+                    });
+                return queryListOfKups.ToList();
+            }
+        }
+
+        public KupDetail GetKupById(int kupId)
+        {
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var kupQuery = ctx.Kups.Find(kupId);
+                    if (kupQuery != null)
+                    {
+                        return new KupDetail
+                        {
+                            KupId = kupQuery.KupId,
+                            KupDateTime = kupQuery.KupDateTime,
+                            Player1Id = kupQuery.Player1Id,
+                            Player2Id = kupQuery.Player2Id,
+                            Player3Id = kupQuery.Player3Id,
+                            Player4Id = kupQuery.Player4Id
+                        };
+                    }
+                    return null;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public bool UpdateKup(UpdateKup updatedKup)
+        {
+            if (updatedKup == null)
+                return false;
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var kupToUpdate = ctx.Kups.Find(updatedKup.KupId);
+                if (kupToUpdate != null)
+                {
+                    kupToUpdate.UpdatedDateTime = updatedKup.UpdatedDateTime;
+                }
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteKup(int kupId)
+        {
+            try
+            {
+
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var kupToDelete = ctx.Kups.Find(kupId);
+                    if (kupToDelete != null)
+                    {
+                        ctx.Kups.Remove(kupToDelete);
+                    }
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

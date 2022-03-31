@@ -2,10 +2,6 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using MK_KupSkorer.Contracts;
 using MK_KupSkorer.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -43,8 +39,10 @@ namespace MK_KupSkorer.MVC
             // OPTIONAL: Enable action method parameter injection (RARE).
             // builder.InjectActionInvoker();
 
-            builder.RegisterType<PlayerService>().As<IPlayerService>();
 
+            builder.RegisterType<PlayerService>().As<IPlayerService>();
+            builder.RegisterType<KupService>().As<IKupService>();
+            builder.RegisterType<RaceService>().As<IRaceService>();
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
