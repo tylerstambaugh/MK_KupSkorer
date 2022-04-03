@@ -42,7 +42,18 @@ namespace MK_KupSkorer.Services
                         LastName = p.LastName,
                         Nickname = p.Nickname
                     });
-                return query.ToList();
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<int> GetPlayerIdsByKupId(int kupId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var listOfPlayers = ctx.Kups
+                    .Where(i => i.KupId == kupId)
+                    .Select(p => new { p.Player1Id, p.Player2Id, p.Player3Id, p.Player4Id });
+                return (List<int>)listOfPlayers;
             }
         }
 

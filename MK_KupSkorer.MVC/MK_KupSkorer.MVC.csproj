@@ -196,14 +196,15 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KupController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,9 +230,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\fontawesome\font-awesome.css" />
-    <Content Include="Content\fontawesome\font-awesome.min.css" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Images\background1.PNG" />
+    <Content Include="Content\Images\ccmallBackground.PNG" />
+    <Content Include="Content\Images\footerImg.PNG" />
+    <Content Include="Content\Images\kup.PNG" />
+    <Content Include="Content\Images\marioandluigi.PNG" />
+    <Content Include="Content\Images\ninjaBackground.PNG" />
+    <Content Include="Content\Images\playerSelect64.PNG" />
+    <Content Include="Content\Images\racersHeaderImg.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -263,10 +269,6 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -314,10 +316,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Player\Index.cshtml" />
+    <Content Include="Views\Player\CreatePlayer.cshtml" />
+    <Content Include="Views\Kup\StartKup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Player\" />
+    <Folder Include="Views\Race\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -330,6 +335,10 @@
     <ProjectReference Include="..\MK_KupSkorer.Data\MK_KupSkorer.Data.csproj">
       <Project>{3D2B1F62-FFBA-4A24-88C5-D7DDE9F05FF0}</Project>
       <Name>MK_KupSkorer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MK_KupSkorer.Models\MK_KupSkorer.Models.csproj">
+      <Project>{34F864BD-3B3A-49C3-ACDC-A761714D4CA2}</Project>
+      <Name>MK_KupSkorer.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\MK_KupSkorer.Services\MK_KupSkorer.Services.csproj">
       <Project>{65E52CD5-C30C-4D35-8B60-02C4214DD3AA}</Project>

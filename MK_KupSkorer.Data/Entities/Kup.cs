@@ -8,6 +8,9 @@ namespace MK_KupSkorer.Data
     {
         [Key]
         public int KupId { get; set; }
+        [Required]
+        [Display(Name = "Race #")]
+        public int RaceCount { get; set; } = 1;
 
         [Required]
         [Display(Name ="Kup Date")]

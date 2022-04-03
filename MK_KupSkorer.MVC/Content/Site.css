@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.footer-image {
+    background-image: url(/Content/Images/footerImg.PNG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    position: 
+}

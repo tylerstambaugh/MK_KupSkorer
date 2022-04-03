@@ -5,7 +5,7 @@ namespace MK_KupSkorer.Contracts
 {
     public interface IRaceService
     {
-        bool CreateRace(RaceCreate raceToCreateModel);
+        int CreateRace(RaceCreate raceToCreateModel);
         bool DeleteRaceById(int raceId);
         RaceDetail GetRaceById(int raceId);
         IEnumerable<RaceListItem> GetRaceList();

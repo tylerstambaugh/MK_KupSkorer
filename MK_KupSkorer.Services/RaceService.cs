@@ -9,10 +9,10 @@ namespace MK_KupSkorer.Services
 {
     public class RaceService : IRaceService
     {
-        public bool CreateRace(RaceCreate raceToCreateModel)
+        public int CreateRace(RaceCreate raceToCreateModel)
         {
             if (raceToCreateModel == null)
-                return false;
+                return 0;
 
             try
             {
@@ -22,13 +22,18 @@ namespace MK_KupSkorer.Services
                     {
                         KupId = raceToCreateModel.KupId
                     };
+
                     ctx.Races.Add(raceToCreate);
-                    return ctx.SaveChanges() == 1;
+                    if (ctx.SaveChanges() == 1)
+                    {
+                        return raceToCreate.RaceId;
+                    }
+                    return 0;
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                return 0;
             }
         }
 

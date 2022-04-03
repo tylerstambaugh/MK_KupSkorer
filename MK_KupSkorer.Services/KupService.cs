@@ -11,10 +11,10 @@ namespace MK_KupSkorer.Services
     {
         //CRUD operations to the DB for the Kup models
 
-        public bool CreateKup(KupCreate kupCreateModel)
+        public int CreateKup(KupCreate kupCreateModel)
         {
             if (kupCreateModel == null)
-                return false;
+                return -1;
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -27,7 +27,9 @@ namespace MK_KupSkorer.Services
                     Player4Id = kupCreateModel.Player4Id
                 };
                 ctx.Kups.Add(kupToCreate);
-                return ctx.SaveChanges() == 1;
+                if (ctx.SaveChanges() == 1)
+                    return kupToCreate.KupId;
+                return -1;
             }
         }
 
@@ -110,6 +112,7 @@ namespace MK_KupSkorer.Services
                 return false;
             }
         }
+
 
     }
 }
