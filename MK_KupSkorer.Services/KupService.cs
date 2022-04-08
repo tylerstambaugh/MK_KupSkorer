@@ -11,20 +11,20 @@ namespace MK_KupSkorer.Services
     {
         //CRUD operations to the DB for the Kup models
 
-        public int CreateKup(KupCreate kupCreateModel)
+        public int CreateKup(KupCreate model)
         {
-            if (kupCreateModel == null)
+            if (model == null)
                 return -1;
 
             using (var ctx = new ApplicationDbContext())
             {
                 var kupToCreate = new Kup
                 {
-                    KupDateTime = DateTime.Now,
-                    Player1Id = kupCreateModel.Player1Id,
-                    Player2Id = kupCreateModel.Player2Id,
-                    Player3Id = kupCreateModel.Player3Id,
-                    Player4Id = kupCreateModel.Player4Id
+                    KupDateTime = DateTimeOffset.Now,
+                    Player1Id = model.Player1Id,
+                    Player2Id = model.Player2Id,
+                    Player3Id = model.Player3Id,
+                    Player4Id = model.Player4Id
                 };
                 ctx.Kups.Add(kupToCreate);
                 if (ctx.SaveChanges() == 1)

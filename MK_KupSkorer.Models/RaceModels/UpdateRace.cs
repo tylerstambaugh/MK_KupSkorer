@@ -8,7 +8,8 @@ namespace MK_KupSkorer.Models.RaceModels
 {
     public class UpdateRace
     {
-        public DateTime RaceDateTime { get; set; }
+        public int RaceId { get; set; }
+        public DateTimeOffset RaceDateTime { get; set; }
         public int WinnerId { get; set; }
     }
 }

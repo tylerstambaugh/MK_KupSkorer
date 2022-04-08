@@ -23,16 +23,10 @@ namespace MK_KupSkorer.MVC.Controllers
             _raceService = raceService;
         }
 
-        // GET: Kup
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet] //GET /kup/startKup
         public ActionResult StartKup()
         {
-            ViewBag.Players = new SelectList(_playerService.GetPlayerList(), "");
+            ViewData["Players"] = new SelectList(_playerService.GetPlayerList(), "PlayerId", "FirstName");
             return View();
         }
 
@@ -49,7 +43,7 @@ namespace MK_KupSkorer.MVC.Controllers
 
                     int raceId = _raceService.CreateRace(new RaceCreate { KupId = kupId });
 
-                    return RedirectToAction("UpdateRace", "RaceController", new { raceId });
+                    return RedirectToAction("UpdateRace", "Race", new { raceId });
                 }
             }
             ModelState.AddModelError("", "Kup could not be created. Please check your inputs and try again.");

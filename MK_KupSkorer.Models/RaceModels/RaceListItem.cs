@@ -9,7 +9,7 @@ namespace MK_KupSkorer.Models.RaceModels
     public class RaceListItem
     {
         public int RaceId { get; set; }
-        public DateTime RaceDateTime { get; set; }
+        public DateTimeOffset? RaceDateTime { get; set; }
 
     }
 }

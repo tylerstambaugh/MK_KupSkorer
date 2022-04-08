@@ -9,8 +9,8 @@ namespace MK_KupSkorer.Models.RaceModels
     public class RaceDetail
     {
         public int RaceId { get; set; }
-        public DateTime RaceDateTime { get; set; }
+        public DateTimeOffset? RaceDateTime { get; set; }
         public int KupId { get; set; }
-        public int WinnerId { get; set; }
+        public int? WinnerId { get; set; }
     }
 }

@@ -14,10 +14,10 @@ namespace MK_KupSkorer.Data
 
         [Required]
         [Display(Name ="Kup Date")]
-        public DateTime KupDateTime { get; set; }
+        public DateTimeOffset KupDateTime { get; set; }
 
         [Display(Name = "Kup Date")]
-        public DateTime UpdatedDateTime { get; set; }
+        public DateTimeOffset UpdatedDateTime { get; set; }
 
         [Required]
         [ForeignKey(nameof(Player1))]

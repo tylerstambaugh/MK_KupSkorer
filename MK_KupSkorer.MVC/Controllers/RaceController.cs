@@ -1,4 +1,5 @@
 ﻿using MK_KupSkorer.Contracts;
+using MK_KupSkorer.Models.RaceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,22 @@ namespace MK_KupSkorer.MVC.Controllers
             _raceService = raceService;
         }
 
-        // GET: Race
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet] //GET /race/UpdateRace
         public ActionResult UpdateRace(int raceId)
         {
-            ViewBag.Players = new SelectList(_playerService.GetPlayerIdsByKupId(_raceService.GetRaceById(raceId).KupId), "PlayerId", "Player");
+            ViewData["Players"] = new SelectList(_playerService.GetPlayerListByKupId(_raceService.GetRaceById(raceId).KupId), "PlayerId", "FirstName");
             var raceToUpdate = _raceService.GetRaceById(raceId);
             return View(raceToUpdate);
+        }
+
+        //POST /Race/UpdateRace
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateRace(UpdateRace updateRaceModel)
+        {
+            //set something in viewbag / viewdata to be able to display the race number on the page
+
+            return View();
         }
     }
 }

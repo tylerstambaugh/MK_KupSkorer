@@ -3,7 +3,6 @@
 namespace MK_KupSkorer.Models.RaceModels
 {
     public class RaceCreate
-    {
-        public int KupId { get; set; }
+    {        public int KupId { get; set; }
     }
 }

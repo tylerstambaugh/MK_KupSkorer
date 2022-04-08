@@ -76,6 +76,18 @@
     <Compile Include="Migrations\202204022342347_nextMigration.designer.cs">
       <DependentUpon>202204022342347_nextMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204040025110_changeDateTimeToDateTimeOffset.cs" />
+    <Compile Include="Migrations\202204040025110_changeDateTimeToDateTimeOffset.designer.cs">
+      <DependentUpon>202204040025110_changeDateTimeToDateTimeOffset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204060051444_changes.cs" />
+    <Compile Include="Migrations\202204060051444_changes.designer.cs">
+      <DependentUpon>202204060051444_changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204060104243_moreChanges.cs" />
+    <Compile Include="Migrations\202204060104243_moreChanges.designer.cs">
+      <DependentUpon>202204060104243_moreChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +104,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204022342347_nextMigration.resx">
       <DependentUpon>202204022342347_nextMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204040025110_changeDateTimeToDateTimeOffset.resx">
+      <DependentUpon>202204040025110_changeDateTimeToDateTimeOffset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204060051444_changes.resx">
+      <DependentUpon>202204060051444_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204060104243_moreChanges.resx">
+      <DependentUpon>202204060104243_moreChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

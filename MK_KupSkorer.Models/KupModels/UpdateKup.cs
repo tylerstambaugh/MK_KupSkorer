@@ -10,6 +10,6 @@ namespace MK_KupSkorer.Models.KupModels
         [Required]
         [Display(Name = "Race #")]
         public int RaceCount { get; set; }
-        public DateTime UpdatedDateTime { get; set; }
+        public DateTimeOffset UpdatedDateTime { get; set; }
     }
 }

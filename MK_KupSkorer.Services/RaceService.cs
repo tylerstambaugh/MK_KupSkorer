@@ -12,7 +12,7 @@ namespace MK_KupSkorer.Services
         public int CreateRace(RaceCreate raceToCreateModel)
         {
             if (raceToCreateModel == null)
-                return 0;
+                return -1;
 
             try
             {
@@ -28,12 +28,12 @@ namespace MK_KupSkorer.Services
                     {
                         return raceToCreate.RaceId;
                     }
-                    return 0;
+                    return -1;
                 }
             }
             catch (Exception ex)
             {
-                return 0;
+                return -1;
             }
         }
 

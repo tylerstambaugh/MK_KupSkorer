@@ -5,7 +5,7 @@ namespace MK_KupSkorer.Contracts
 {
     public interface IKupService
     {
-        int CreateKup(KupCreate kupCreateModel);
+        int CreateKup(KupCreate model);
         bool DeleteKup(int kupId);
         KupDetail GetKupById(int kupId);
         IEnumerable<KupListItem> GetKupListItems();

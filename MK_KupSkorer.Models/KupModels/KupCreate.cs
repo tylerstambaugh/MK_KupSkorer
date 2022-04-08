@@ -9,7 +9,7 @@ namespace MK_KupSkorer.Models.KupModels
 {
     public class KupCreate
     {
-        public DateTime KupDate { get; set; }
+        public DateTimeOffset KupDate { get; set; }
         public int Player1Id { get; set; }
         public int Player2Id { get; set; }
         public int? Player3Id { get; set; }

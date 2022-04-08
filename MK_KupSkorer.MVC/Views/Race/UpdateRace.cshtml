@@ -1,0 +1,30 @@
+﻿@model MK_KupSkorer.Models.RaceModels.RaceDetail
+
+
+@{
+    ViewBag.Title = "UpdateRace";
+}
+
+<h2>Update Race </h2>
+
+<!-- need to provide a way for a user to select the winner of the race and then proceed to the next race, until the 4th race has been tallied.-->
+
+<div>
+<p>Select the Race winner</p>
+
+</div>
+
+    @Html.AntiForgeryToken()
+
+<form>
+    <label for="Winner">Winner</label>
+    <select id="Winner" name="Winner">
+        @foreach (var p in ViewData["Players"] as IEnumerable<SelectListItem>)
+            {
+                <option value=@p.Value>@p.Text</option>
+            }
+                <option value="0">CPU</option>
+
+    </select>
+    <input type="submit" name="Update Race" class="btn btn-primary" />
+</form>

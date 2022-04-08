@@ -38,6 +38,7 @@ namespace MK_KupSkorer.Services
                 var query = ctx.Players
                     .Select(p => new PlayerListItem
                     {
+                        PlayerId = p.PlayerId,
                         FirstName = p.FirstName,
                         LastName = p.LastName,
                         Nickname = p.Nickname
@@ -46,15 +47,23 @@ namespace MK_KupSkorer.Services
             }
         }
 
-        public IEnumerable<int> GetPlayerIdsByKupId(int kupId)
+        public IEnumerable<PlayerListItem> GetPlayerListByKupId(int kupId)
         {
+            List<PlayerListItem> playerList = new List<PlayerListItem>();
+
             using (var ctx = new ApplicationDbContext())
             {
-                var listOfPlayers = ctx.Kups
-                    .Where(i => i.KupId == kupId)
-                    .Select(p => new { p.Player1Id, p.Player2Id, p.Player3Id, p.Player4Id });
-                return (List<int>)listOfPlayers;
+                var kup = ctx.Kups
+                   .Single(i => i.KupId == kupId);
+
+                playerList.Add(GetPlayerListItemById(kup.Player1Id));
+                playerList.Add(GetPlayerListItemById(kup.Player2Id));
+                if(kup.Player3.PlayerId != 0)
+                playerList.Add(GetPlayerListItemById(kup.Player3Id));
+                if(kup.Player3.PlayerId != 0)
+                playerList.Add(GetPlayerListItemById(kup.Player4Id));
             }
+            return playerList.ToArray();
         }
 
         public PlayerDetail GetPlayerById(int playerId)
@@ -74,6 +83,34 @@ namespace MK_KupSkorer.Services
                             Nickname = dbRow.Nickname,
                             TotalPoints = dbRow.TotalPoints,
                             TotalBonusPoints = dbRow.TotalBonusPoints
+                        };
+                    }
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                //do logging
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        public PlayerListItem GetPlayerListItemById(int? playerId)
+        {
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var dbRow = ctx.Players.Find(playerId);
+                    if (dbRow != null)
+                    {
+                        return new PlayerListItem
+                        {
+                            PlayerId = dbRow.PlayerId,
+                            FirstName = dbRow.FirstName,
+                            LastName = dbRow.LastName,
+                            Nickname = dbRow.Nickname
                         };
                     }
                     return null;

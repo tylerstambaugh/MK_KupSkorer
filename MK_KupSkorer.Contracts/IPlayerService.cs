@@ -9,7 +9,8 @@ namespace MK_KupSkorer.Contracts
         bool DeletePlayerById(int playerId);
         PlayerDetail GetPlayerById(int playerId);
         IEnumerable<PlayerListItem> GetPlayerList();
-        IEnumerable<int> GetPlayerIdsByKupId(int kupId);
+        IEnumerable<PlayerListItem> GetPlayerListByKupId(int kupId);
+        PlayerListItem GetPlayerListItemById(int? playerId);
         bool UpdatePlayerAttributes(UpdatePlayerAttributes playerUpdateAttributesModel, int playerId);
         bool UpdatePlayerPoints(UpdatePlayerPoints playerUpdatePointsModel, int playerId);
     }
