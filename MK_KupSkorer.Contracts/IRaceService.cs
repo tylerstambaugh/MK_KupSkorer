@@ -10,6 +10,9 @@ namespace MK_KupSkorer.Contracts
         RaceDetail GetRaceById(int raceId);
         IEnumerable<RaceListItem> GetRaceList();
         IEnumerable<RaceListItem> GetRaceListByKupId(int kupId);
+
+        bool IsLastRace(int raceId);
+        int GetKupRaceCountByRaceId(int raceId);
         bool UpdateRace(UpdateRace raceToUpdateModel, int raceId);
     }
 }

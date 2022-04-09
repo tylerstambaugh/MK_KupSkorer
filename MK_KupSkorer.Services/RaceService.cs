@@ -128,8 +128,28 @@ namespace MK_KupSkorer.Services
             {
                 return false;
             }
+
         }
 
+        public int GetKupRaceCountByRaceId(int raceId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var raceCount = ctx.Races
+                    .Where(r => r.RaceId == raceId)
+                    .Select(k => k.Kup.RaceCount);
+
+                return raceCount.First();
+                
+            }
+        }
+
+        public bool IsLastRace(int raceId)
+        {
+            if (GetKupRaceCountByRaceId(raceId) == 4)
+                return true;
+            return false;
+        }
         public bool DeleteRaceById(int raceId)
         {
             try

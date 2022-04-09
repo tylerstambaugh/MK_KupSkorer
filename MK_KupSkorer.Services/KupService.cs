@@ -92,6 +92,17 @@ namespace MK_KupSkorer.Services
             }
         }
 
+        public bool IncrementKupRaceCount(int kupId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var kupToUpdate = ctx.Kups.Find(kupId);
+                kupToUpdate.RaceCount++;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public bool DeleteKup(int kupId)
         {
             try
@@ -112,7 +123,5 @@ namespace MK_KupSkorer.Services
                 return false;
             }
         }
-
-
     }
 }

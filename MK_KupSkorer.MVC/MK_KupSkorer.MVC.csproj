@@ -320,6 +320,7 @@
     <Content Include="Views\Player\CreatePlayer.cshtml" />
     <Content Include="Views\Kup\StartKup.cshtml" />
     <Content Include="Views\Race\UpdateRace.cshtml" />
+    <Content Include="Views\Kup\UpdateKup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,22 +21,47 @@ namespace MK_KupSkorer.MVC.Controllers
             _raceService = raceService;
         }
 
-        [HttpGet] //GET /race/UpdateRace
+        [HttpGet] //GET /Race/UpdateRace
         public ActionResult UpdateRace(int raceId)
         {
+            ViewBag.RaceNumber = _raceService.GetKupRaceCountByRaceId(raceId);
+
             ViewData["Players"] = new SelectList(_playerService.GetPlayerListByKupId(_raceService.GetRaceById(raceId).KupId), "PlayerId", "FirstName");
-            var raceToUpdate = _raceService.GetRaceById(raceId);
+
+            RaceDetail raceToUpdate = _raceService.GetRaceById(raceId);
+
             return View(raceToUpdate);
         }
 
         //POST /Race/UpdateRace
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateRace(UpdateRace updateRaceModel)
+        public ActionResult UpdateRace(UpdateRace updateRaceModel, int raceId)
         {
-            //set something in viewbag / viewdata to be able to display the race number on the page
+            var currentRace = _raceService.GetRaceById(raceId);
 
-            return View();
+            //increment the race count on the Kup
+            _kupService.IncrementKupRaceCount(currentRace.KupId);
+
+            if (_raceService.IsLastRace(raceId))
+            {
+                _raceService.UpdateRace(updateRaceModel, raceId);
+                return RedirectToAction("UpdateKup", "Kup", currentRace.KupId);
+            }
+
+            //update the current race
+            _raceService.UpdateRace(updateRaceModel, raceId);
+
+            //Create a new race to pass back to the view
+            int nextRaceId = _raceService.CreateRace(new RaceCreate { KupId = currentRace.KupId });
+
+            //Provide race count to view
+            ViewBag.RaceNumber = _raceService.GetKupRaceCountByRaceId(raceId);
+            //Provide players to view
+            ViewData["Players"] = new SelectList(_playerService.GetPlayerListByKupId(currentRace.KupId), "PlayerId", "FirstName");
+
+            //redirect back to UpdateRace to update the newly created race
+            return RedirectToAction("UpdateRace", "Race", new { raceId = nextRaceId  } );
         }
     }
 }

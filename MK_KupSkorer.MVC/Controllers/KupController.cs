@@ -53,7 +53,7 @@ namespace MK_KupSkorer.MVC.Controllers
 
 
         [HttpGet] //GET /kup/UpdateKup
-        public ActionResult UpdateKup()
+        public ActionResult UpdateKup(int kupId)
         {
             return View();
         }

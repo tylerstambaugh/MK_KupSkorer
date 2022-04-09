@@ -14,17 +14,26 @@
 
 </div>
 
+ 
+
+<div>
+    <h3>Kup ID: @Model.KupId </h3>
+    <h3>Race #: @ViewBag.RaceNumber</h3>
+</div>
+
+<form method="post">
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.RaceId)
 
-<form>
     <label for="Winner">Winner</label>
-    <select id="Winner" name="Winner">
-        @foreach (var p in ViewData["Players"] as IEnumerable<SelectListItem>)
-            {
-                <option value=@p.Value>@p.Text</option>
-            }
-                <option value="0">CPU</option>
+    <select id="WinnerId" name="WinnerId">
+        <option value="none" selected disabled hidden>Select Winner</option>
 
+        @foreach (var p in ViewData["Players"] as IEnumerable<SelectListItem>)
+        {
+            <option value=@p.Value>@p.Text</option>
+        }
+        @*<option value="none">CPU</option>*@
     </select>
-    <input type="submit" name="Update Race" class="btn btn-primary" />
+    <input type="submit" name="UpdateRace" class="btn btn-primary" />
 </form>

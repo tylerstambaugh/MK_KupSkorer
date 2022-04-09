@@ -10,5 +10,7 @@ namespace MK_KupSkorer.Contracts
         KupDetail GetKupById(int kupId);
         IEnumerable<KupListItem> GetKupListItems();
         bool UpdateKup(UpdateKup updatedKup);
+
+        bool IncrementKupRaceCount(int kupId);
     }
 }

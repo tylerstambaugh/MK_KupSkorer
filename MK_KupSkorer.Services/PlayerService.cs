@@ -58,9 +58,9 @@ namespace MK_KupSkorer.Services
 
                 playerList.Add(GetPlayerListItemById(kup.Player1Id));
                 playerList.Add(GetPlayerListItemById(kup.Player2Id));
-                if(kup.Player3.PlayerId != 0)
+                if(kup.Player3 != null)
                 playerList.Add(GetPlayerListItemById(kup.Player3Id));
-                if(kup.Player3.PlayerId != 0)
+                if(kup.Player4 != null)
                 playerList.Add(GetPlayerListItemById(kup.Player4Id));
             }
             return playerList.ToArray();
