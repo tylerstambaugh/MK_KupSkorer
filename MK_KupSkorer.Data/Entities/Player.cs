@@ -30,10 +30,13 @@ namespace MK_KupSkorer.Data
         public string Nickname { get; set; }
 
         [Display(Name = "Total Points")]
-        public double TotalPoints { get; set; }
+        public double TotalPoints { get; set; } = 0;
 
         [Display(Name = "Total Bonus Points")]
-        public int TotalBonusPoints { get; set; }
+        public int TotalBonusPoints { get; set; } = 0;
+
+        [Display(Name = "Total Wins")]
+        public int TotalWins { get; set; } = 0;
 
     }
 }

@@ -12,6 +12,6 @@ namespace MK_KupSkorer.Contracts
         IEnumerable<PlayerListItem> GetPlayerListByKupId(int kupId);
         PlayerListItem GetPlayerListItemById(int? playerId);
         bool UpdatePlayerAttributes(UpdatePlayerAttributes playerUpdateAttributesModel, int playerId);
-        bool UpdatePlayerPoints(UpdatePlayerPoints playerUpdatePointsModel, int playerId);
+        bool UpdatePlayerPoints(UpdatePlayerPoints playerUpdatePointsModel);
     }
 }

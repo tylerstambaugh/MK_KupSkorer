@@ -40,14 +40,14 @@ namespace MK_KupSkorer.MVC.Controllers
         {
             var currentRace = _raceService.GetRaceById(raceId);
 
-            //increment the race count on the Kup
-            _kupService.IncrementKupRaceCount(currentRace.KupId);
-
             if (_raceService.IsLastRace(raceId))
             {
                 _raceService.UpdateRace(updateRaceModel, raceId);
-                return RedirectToAction("UpdateKup", "Kup", currentRace.KupId);
+                return RedirectToAction("ReviewKup", "Kup", new { kupId = currentRace.KupId });
             }
+
+            //increment the race count on the Kup
+            _kupService.IncrementKupRaceCount(currentRace.KupId);
 
             //update the current race
             _raceService.UpdateRace(updateRaceModel, raceId);

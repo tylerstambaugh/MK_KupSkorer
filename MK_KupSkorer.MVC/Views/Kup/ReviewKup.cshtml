@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MK_KupSkorer.Models.PlayerModels.PlayerKupReviewListItem>
+
+@{
+    ViewBag.Title = "ReviewKup";
+}
+
+<h2>Review Kup</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlayerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlayerKupWins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlayerKupPoints)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlayerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlayerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlayerKupWins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlayerKupPoints)
+        </td>
+    </tr>
+}
+    @Html.ActionLink("Home", "Index", "Home")
+</table>

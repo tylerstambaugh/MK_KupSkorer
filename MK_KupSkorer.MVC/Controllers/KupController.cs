@@ -1,5 +1,6 @@
 ﻿using MK_KupSkorer.Contracts;
 using MK_KupSkorer.Models.KupModels;
+using MK_KupSkorer.Models.PlayerModels;
 using MK_KupSkorer.Models.RaceModels;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace MK_KupSkorer.MVC.Controllers
                 int kupId = _kupService.CreateKup(kupCreateModel);
                 if (kupId != -1)
                 {
-                    TempData.Add("", $"Kup {kupId} was kreated.");
+                   // TempData.Add("", $"Kup {kupId} was kreated.");
 
                     int raceId = _raceService.CreateRace(new RaceCreate { KupId = kupId });
 
@@ -52,20 +53,60 @@ namespace MK_KupSkorer.MVC.Controllers
         }
 
 
-        [HttpGet] //GET /kup/UpdateKup
-        public ActionResult UpdateKup(int kupId)
+        [HttpGet] //GET /kup/ReviewKup
+        public ActionResult ReviewKup(int kupId)
         {
-            return View();
+            //get list of races for the kup
+            var raceList = _raceService.GetRaceDetailListByKupId(kupId);
+
+            //get list of Players for the kup
+            var playerList = _playerService.GetPlayerListByKupId(kupId);
+
+            //create list of PlayerKupReviewList obj that will be passed to the view
+            List<PlayerKupReviewListItem> playerKupReviewList = new List<PlayerKupReviewListItem>();
+
+            foreach(PlayerListItem pli in playerList)
+            {
+                if (pli != null)
+                {
+                    playerKupReviewList.Add(new PlayerKupReviewListItem
+                    {
+                        PlayerId = pli.PlayerId,
+                        PlayerName = pli.FirstName
+                    });
+                }                
+            }
+
+            //update playerKupReviewList with points for each race
+            foreach(RaceDetail rd in raceList)
+            {
+                //need to find the player that was the winner of the race
+                //PlayerKupReviewListItem.PlayerId == RaceDetail.WinnerId
+               var ptu = playerKupReviewList
+                    .Find(p => p.PlayerId == rd.WinnerId);
+                if (ptu != null)
+                {
+                    ptu.PlayerKupWins++;
+                    ptu.PlayerKupPoints += 0.25;
+                }
+            }
+
+            //Also update the total points and wins for the player
+            foreach (PlayerKupReviewListItem p in playerKupReviewList)
+            {
+                UpdatePlayerPoints upp = new UpdatePlayerPoints
+                {
+                    PlayerId = p.PlayerId,
+                    TotalPoints = p.PlayerKupPoints,
+                    TotalWins = p.PlayerKupWins
+
+                };
+                _playerService.UpdatePlayerPoints(upp);
+            }
+
+
+            return View(playerKupReviewList);
         }
 
-        [HttpPost]  //POSt /kup/updateKup
-        [ValidateAntiForgeryToken]
-        public ActionResult UpdateKup(UpdateKup updateKupModel, UpdateRace updateRaceModel)
-        {
-            if (!ModelState.IsValid)
-                return View(updateKupModel);
-
-            return View();
-        }
     }
 }

@@ -88,6 +88,26 @@
     <Compile Include="Migrations\202204060104243_moreChanges.designer.cs">
       <DependentUpon>202204060104243_moreChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204091537294_newMigration1.cs" />
+    <Compile Include="Migrations\202204091537294_newMigration1.designer.cs">
+      <DependentUpon>202204091537294_newMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204091719113_newMigration2.cs" />
+    <Compile Include="Migrations\202204091719113_newMigration2.designer.cs">
+      <DependentUpon>202204091719113_newMigration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204092006158_nextMigration1.cs" />
+    <Compile Include="Migrations\202204092006158_nextMigration1.designer.cs">
+      <DependentUpon>202204092006158_nextMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204092211560_again.cs" />
+    <Compile Include="Migrations\202204092211560_again.designer.cs">
+      <DependentUpon>202204092211560_again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204092250296_again2.cs" />
+    <Compile Include="Migrations\202204092250296_again2.designer.cs">
+      <DependentUpon>202204092250296_again2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -113,6 +133,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204060104243_moreChanges.resx">
       <DependentUpon>202204060104243_moreChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204091537294_newMigration1.resx">
+      <DependentUpon>202204091537294_newMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204091719113_newMigration2.resx">
+      <DependentUpon>202204091719113_newMigration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204092006158_nextMigration1.resx">
+      <DependentUpon>202204092006158_nextMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204092211560_again.resx">
+      <DependentUpon>202204092211560_again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204092250296_again2.resx">
+      <DependentUpon>202204092250296_again2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

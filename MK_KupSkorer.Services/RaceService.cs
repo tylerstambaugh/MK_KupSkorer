@@ -1,5 +1,6 @@
 ﻿using MK_KupSkorer.Contracts;
 using MK_KupSkorer.Data;
+using MK_KupSkorer.Models.PlayerModels;
 using MK_KupSkorer.Models.RaceModels;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,23 @@ namespace MK_KupSkorer.Services
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        public IEnumerable<RaceDetail> GetRaceDetailListByKupId(int kupId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var raceQuery = ctx.Races
+                    .Where(r => r.KupId == kupId)
+                    .Select(r => new RaceDetail
+                    {
+                        RaceId = r.RaceId,
+                        RaceDateTime = r.RaceDateTime,
+                        WinnerId = r.WinnerId,
+                        KupId = r.KupId
+                    });
+                return raceQuery.ToList();
             }
         }
 
@@ -170,5 +188,25 @@ namespace MK_KupSkorer.Services
                 return false;
             }
         }
+
+        public int GetWinnerIdByRaceId(int raceId)
+        {
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var race = ctx.Races.Find(raceId);
+
+                if(race != null)
+                {
+                    return (int)race.WinnerId;
+                }
+            }
+                return -1;
+        }
+
+        //public int RewardBonusPoint(int kupId)
+        //{
+
+        //}
     }
 }

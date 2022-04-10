@@ -147,26 +147,35 @@ namespace MK_KupSkorer.Services
             }
         }
 
-        public bool UpdatePlayerPoints(UpdatePlayerPoints playerUpdatePointsModel, int playerId)
+        public bool UpdatePlayerPoints(UpdatePlayerPoints playerUpdatePointsModel)
         {
             if (playerUpdatePointsModel == null)
                 return false;
 
             using (var ctx = new ApplicationDbContext())
             {
-                if (ctx.Players.Find(playerId) != null)
+                if (ctx.Players.Find(playerUpdatePointsModel.PlayerId) != null)
                 {
                     var playerToUpdate = ctx.Players
-                        .Where(p => p.PlayerId == playerId)
+                        .Where(p => p.PlayerId == playerUpdatePointsModel.PlayerId)
                         .Single();
 
-                    playerToUpdate.TotalPoints = playerUpdatePointsModel.TotalPoints;
-                    playerToUpdate.TotalBonusPoints = playerUpdatePointsModel.TotalBonusPoints;
+                    playerToUpdate.TotalPoints += playerUpdatePointsModel.TotalPoints;
+
+                    playerToUpdate.TotalBonusPoints += playerUpdatePointsModel.TotalBonusPoints;
+
+                    playerToUpdate.TotalWins += 
+                        playerUpdatePointsModel.TotalWins;
 
                     return ctx.SaveChanges() == 1;
                 }
                 return false;
             }
+        }
+
+        public double GetPlayerPointsByKupID(int kupId)
+        {
+            throw new NotImplementedException();
         }
 
         public bool DeletePlayerById(int playerId)

@@ -63,6 +63,7 @@
     <Compile Include="KupModels\UpdateKup.cs" />
     <Compile Include="PlayerModels\PlayerCreate.cs" />
     <Compile Include="PlayerModels\PlayerDetail.cs" />
+    <Compile Include="PlayerModels\PlayerKupReviewListItem.cs" />
     <Compile Include="PlayerModels\PlayerListItem.cs" />
     <Compile Include="PlayerModels\UpdatePlayerAttributes.cs" />
     <Compile Include="PlayerModels\UpdatePlayerPoints.cs" />

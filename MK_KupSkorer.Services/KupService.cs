@@ -1,6 +1,7 @@
 ﻿using MK_KupSkorer.Contracts;
 using MK_KupSkorer.Data;
 using MK_KupSkorer.Models.KupModels;
+using MK_KupSkorer.Models.PlayerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,5 +124,10 @@ namespace MK_KupSkorer.Services
                 return false;
             }
         }
+
+        //public List<PlayerKupReview> GetListOfPlayerKupReview(int kupId)
+        //{
+
+        //}
     }
 }

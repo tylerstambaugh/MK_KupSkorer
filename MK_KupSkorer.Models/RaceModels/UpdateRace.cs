@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace MK_KupSkorer.Models.RaceModels
 {
     public class UpdateRace
-    {
-        public int WinnerId { get; set; }
+    {        public int WinnerId { get; set; }
     }
 }
