@@ -234,10 +234,15 @@
     <Content Include="Content\Images\ccmallBackground.PNG" />
     <Content Include="Content\Images\footerImg.PNG" />
     <Content Include="Content\Images\kup.PNG" />
+    <Content Include="Content\Images\logo.PNG" />
     <Content Include="Content\Images\marioandluigi.PNG" />
+    <Content Include="Content\Images\mk_og.jpg" />
+    <Content Include="Content\Images\mk_spreadsheet.jpg" />
     <Content Include="Content\Images\ninjaBackground.PNG" />
+    <Content Include="Content\Images\pitStop.PNG" />
     <Content Include="Content\Images\playerSelect64.PNG" />
     <Content Include="Content\Images\racersHeaderImg.PNG" />
+    <Content Include="Content\Images\reportKard.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

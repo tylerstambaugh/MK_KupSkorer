@@ -3,33 +3,36 @@
 }
 
 <br />
-
-<br />
-<div class="overflow-scroll">
-    <div class="row justify-content-around">
-        <div class="col-4">
-            <a href="@Url.Action("Index", "Player", null)">
-                <img src="~/Content/Images/racers.png" class="img-thumbnail" />
-            </a>
-            <p class="text-center">Create and Edit Racers</p>
-        </div>
-        <div class="col-4">
-            <a href="@Url.Action("StartKup", "Kup", null)">
-                <img src="~/Content/Images/kup.PNG" class="img-thumbnail" />
-            </a>
-            <p class="text-center">Start Skokring A Kup</p>
-        </div>
-    </div>
     <br />
-    <div class="row justify-content-around">
-        <div class="col-4">
-            @Html.ActionLink("Report Kards", "Index", "ReportController", null, new { @class = "btn btn-primary btn-lg" })
-            <p>Search Past Results</p>
+    <div class="home-layout">
+        <div class="row justify-content-around home-layout-row">
+            <div class="col-4">
+                <a href="@Url.Action("Index", "Player", null)">
+                    <img src="~/Content/Images/racers.png" class="home-layout-image img-thumbnail" />
+                </a>
+                <p class="home-layout-text">Create and Edit Racers</p>
+            </div>
+            <div class="col-4">
+                <a href="@Url.Action("StartKup", "Kup", null)">
+                    <img src="~/Content/Images/kup.PNG" class="img-thumbnail home-layout-image" />
+                </a>
+                <p class="home-layout-text">Start Skokring A Kup</p>
+            </div>
         </div>
-        <div class="col-4">
-            @Html.ActionLink("Pit Stop", "Index", "MessageController", null, new { @class = "btn btn-primary btn-lg" })
-            <p>Messaging Board</p>
+        <br />
+        <div class="row justify-content-around">
+            <div class="col-4">
+                <a href="@Url.Action("Index", "ReportKard", null )"> 
+                    <img src="~/Content/Images/reportKard.PNG" class="img-thumbnail home-layout-image" />
+                </a>
+                <p class="home-layout-text">Search Past Results</p>
+            </div>
+            <div class="col-4">
+               <a href="@Url.Action("Index", "PitStop", null)">
+                   <img src="~/Content/Images/pitStop.PNG" class="home-layout-image" />
+               </a>
+                <p class="home-layout-text">Messaging Board</p>
+            </div>
         </div>
     </div>
-</div>
 

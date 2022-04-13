@@ -103,8 +103,6 @@ namespace MK_KupSkorer.MVC.Controllers
                 };
                 _playerService.UpdatePlayerPoints(upp);
             }
-
-
             return View(playerKupReviewList);
         }
 

@@ -1,6 +1,9 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 20px;
+    background-color: #aefd6d;
+    font-family: monospace;
+    font-size: 23px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -28,5 +31,64 @@ textarea {
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
-    position: 
+}
+
+.home-layout {
+
+}
+
+.home-layout-text {
+    text-align: center;
+    font-family: monospace;
+    font-size:23px;
+    color: black;
+}
+
+.home-layout-row {
+    height: 300px;
+}
+
+.home-layout-image {
+    height: 200px;
+    width: 250px;
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+#headerNav {
+    background: rgb(174,253,109);
+    background: linear-gradient(346deg, rgba(174,253,109,1) 0%, rgba(250,243,9,1) 75%, rgba(245,28,36,1) 100%);
+}
+
+.header-links {
+    font-size: 29px;
+    font-family: monospace;
+    color: darkblue;
+    padding: 10px, 5px, 10px, 5px;
+    margin: 10px, 25px, 10px, 5px;
+}
+
+.update-race {
+    display: block;
+    justify-content: center;
+}
+
+.footer-text {
+    text-align: center;
+    font-family: monospace;
+    font-size: 23px;
+    font-weight: bolder;
+    color: black;
+    display: block;
+    padding-top: 15px;
+
+}
+
+.about-images {
+    height: 250px;
+    display: inline;
+
 }
