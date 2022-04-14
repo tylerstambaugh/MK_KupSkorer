@@ -326,6 +326,7 @@
     <Content Include="Views\Kup\StartKup.cshtml" />
     <Content Include="Views\Race\UpdateRace.cshtml" />
     <Content Include="Views\Kup\ReviewKup.cshtml" />
+    <Content Include="Views\Player\EditPlayerAttributes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,8 +8,9 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    scroll-margin-bottom: 20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -90,5 +91,9 @@ textarea {
 .about-images {
     height: 250px;
     display: inline;
+}
 
+.about-content {
+    overflow-x: scroll;
+    
 }
