@@ -83,6 +83,8 @@ namespace MK_KupSkorer.MVC.Controllers
 
         //player/delete/{id}
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
         public RedirectResult Delete(int playerId)
         {
 
@@ -99,7 +101,7 @@ namespace MK_KupSkorer.MVC.Controllers
         
         //player/delete/{id}
         [ValidateAntiForgeryToken]
-        public RedirectResult MarkPlayerInActive(int playerId)
+        public RedirectResult MarkPlayerInactive(int playerId)
         {
 
             if (_playerService.MarkPlayerInactive(playerId))

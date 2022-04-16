@@ -29,8 +29,8 @@ namespace MK_KupSkorer.Data
         [MaxLength(20, ErrorMessage = "Nickname cannot exceed 20 characters.")]
         public string Nickname { get; set; }
 
-        [Display(Name = "Total Points")]
-        public double TotalPoints { get; set; } = 0;
+        [Display(Name = "Total RacePoints")]
+        public double TotalRacePoints { get; set; } = 0;
 
         [Display(Name = "Total Bonus Points")]
         public int TotalBonusPoints { get; set; } = 0;

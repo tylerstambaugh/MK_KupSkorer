@@ -27,7 +27,7 @@ namespace MK_KupSkorer.MVC.Controllers
         [HttpGet] //GET /kup/startKup
         public ActionResult StartKup()
         {
-            ViewData["Players"] = new SelectList(_playerService.GetPlayerList(), "PlayerId", "FirstName");
+            ViewData["Players"] = new SelectList(_playerService.GetActivePlayerList(), "PlayerId", "FirstName");
             return View();
         }
 
@@ -91,18 +91,27 @@ namespace MK_KupSkorer.MVC.Controllers
                 }
             }
 
+            //figure out who to award the bonus point to:
+            int bonusPointWinner = _kupService.RewardBonusPoint(kupId);
+            if (bonusPointWinner != -1)
+            {
+                playerKupReviewList.Single(p => p.PlayerId == bonusPointWinner).PlayerKupBonusPoints = 1;
+            }
+
             //Also update the total points and wins for the player
             foreach (PlayerKupReviewListItem p in playerKupReviewList)
             {
                 UpdatePlayerPoints upp = new UpdatePlayerPoints
                 {
                     PlayerId = p.PlayerId,
-                    TotalPoints = p.PlayerKupPoints,
-                    TotalWins = p.PlayerKupWins
-
+                    TotalRacePoints = p.PlayerKupPoints,
+                    TotalWins = p.PlayerKupWins,
+                    TotalBonusPoints = p.PlayerKupBonusPoints
                 };
                 _playerService.UpdatePlayerPoints(upp);
             }
+
+           
             return View(playerKupReviewList);
         }
 

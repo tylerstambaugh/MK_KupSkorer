@@ -44,9 +44,10 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
             <div class="col-md-offset-2 col-md-1">
-                @Html.ActionLink("Delete", "Delete", "Player",
-                    new { playerId = Model.PlayerId },
-                    new { onclick = "return confirm('Are you sure you want to delete this player? This action is permanent and cannot be undone buster.');", @class = "btn btn-secondary" })
+                <input type="submit" value="Deactivate" formaction="@Url.Action("MarkPlayerInActive")" formmethod="post" class="btn btn-secondary" onclick="return confirm('Are you sure you want to Deactivate this player? You will no longer be able to select them for racing.');" />
+            </div>
+            <div class="col-md-offset-2 col-md-1">
+                <input type="submit" value="Delete" formaction="@Url.Action("Delete")" formmethod="post" class=" btn btn-secondary" onclick="return confirm('Are you sure you want to Delete this player? This action is permanent and cannot be undone buster.');" />
             </div>
         </div>
     </div>

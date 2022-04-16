@@ -203,10 +203,5 @@ namespace MK_KupSkorer.Services
             }
                 return -1;
         }
-
-        //public int RewardBonusPoint(int kupId)
-        //{
-
-        //}
     }
 }

@@ -9,8 +9,6 @@ namespace MK_KupSkorer.Services
 {
     public class PlayerService : IPlayerService
     {
-        //constructor - interface IPlayerService
-
         public bool CreatePlayer(PlayerCreate playerCreateModel)
         {
             if (playerCreateModel == null)
@@ -24,14 +22,15 @@ namespace MK_KupSkorer.Services
                 {
                     FirstName = playerCreateModel.FirstName,
                     LastName = playerCreateModel.LastName,
-                    Nickname = playerCreateModel.Nickname
+                    Nickname = playerCreateModel.Nickname,
+                    IsActive = true
                 };
                 ctx.Players.Add(playerToCreate);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<PlayerListItem> GetPlayerList()
+        public IEnumerable<PlayerListItem> GetActivePlayerList()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -42,7 +41,24 @@ namespace MK_KupSkorer.Services
                         PlayerId = p.PlayerId,
                         FirstName = p.FirstName,
                         LastName = p.LastName,
-                        Nickname = p.Nickname
+                        Nickname = p.Nickname,
+                        IsActive = p.IsActive
+                    });
+                return query.ToArray();
+            }
+        }
+        public IEnumerable<PlayerListItem> GetPlayerList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Players
+                    .Select(p => new PlayerListItem
+                    {
+                        PlayerId = p.PlayerId,
+                        FirstName = p.FirstName,
+                        LastName = p.LastName,
+                        Nickname = p.Nickname,
+                        IsActive = p.IsActive
                     });
                 return query.ToArray();
             }
@@ -82,7 +98,7 @@ namespace MK_KupSkorer.Services
                             FirstName = dbRow.FirstName,
                             LastName = dbRow.LastName,
                             Nickname = dbRow.Nickname,
-                            TotalPoints = dbRow.TotalPoints,
+                            TotalRacePoints = dbRow.TotalRacePoints,
                             TotalBonusPoints = dbRow.TotalBonusPoints,
                             IsActive = dbRow.IsActive
                         };
@@ -162,13 +178,27 @@ namespace MK_KupSkorer.Services
                         .Where(p => p.PlayerId == playerUpdatePointsModel.PlayerId)
                         .Single();
 
-                    playerToUpdate.TotalPoints += playerUpdatePointsModel.TotalPoints;
+                    playerToUpdate.TotalRacePoints += playerUpdatePointsModel.TotalRacePoints;
 
                     playerToUpdate.TotalBonusPoints += playerUpdatePointsModel.TotalBonusPoints;
 
                     playerToUpdate.TotalWins += 
                         playerUpdatePointsModel.TotalWins;
 
+                    return ctx.SaveChanges() == 1;
+                }
+                return false;
+            }
+        }
+
+        public bool AddBonusPointToPlayer(int playerId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var playerRecord = ctx.Players.Find(playerId);
+                if (playerRecord != null)
+                {
+                    playerRecord.TotalBonusPoints++;
                     return ctx.SaveChanges() == 1;
                 }
                 return false;
@@ -184,13 +214,19 @@ namespace MK_KupSkorer.Services
         {
             try
             {
-
                 using (var ctx = new ApplicationDbContext())
                 {
-                    var playerToDelete = ctx.Players.Find(playerId);
-                    if (playerToDelete != null)
-                        ctx.Players.Remove(playerToDelete);
-                    return ctx.SaveChanges() == 1;
+                    var numRacesWonForPlayer = ctx.Races
+                        .Where(r => r.WinnerId == playerId)
+                        .Count();
+                    if (numRacesWonForPlayer == 0)
+                    {
+                        var playerToDelete = ctx.Players.Find(playerId);
+                        if (playerToDelete != null)
+                            ctx.Players.Remove(playerToDelete);
+                        return ctx.SaveChanges() == 1;
+                    }
+                    return false;
                 }
             }
             catch (Exception ex)

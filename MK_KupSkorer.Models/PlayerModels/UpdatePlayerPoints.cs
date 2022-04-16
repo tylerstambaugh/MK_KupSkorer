@@ -7,7 +7,7 @@ namespace MK_KupSkorer.Models.PlayerModels
         public int PlayerId { get; set; }
 
         [Display(Name = "Total Points")]
-        public double TotalPoints { get; set; }
+        public double TotalRacePoints { get; set; }
 
         [Display(Name = "Total Bonus Points")]
         public int TotalBonusPoints { get; set; }

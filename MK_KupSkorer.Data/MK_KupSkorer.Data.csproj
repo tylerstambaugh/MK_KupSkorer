@@ -112,6 +112,10 @@
     <Compile Include="Migrations\202204160027586_addedIsActiveOnPlayer.designer.cs">
       <DependentUpon>202204160027586_addedIsActiveOnPlayer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204161450307_addedRoles.cs" />
+    <Compile Include="Migrations\202204161450307_addedRoles.designer.cs">
+      <DependentUpon>202204161450307_addedRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -155,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204160027586_addedIsActiveOnPlayer.resx">
       <DependentUpon>202204160027586_addedIsActiveOnPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204161450307_addedRoles.resx">
+      <DependentUpon>202204161450307_addedRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

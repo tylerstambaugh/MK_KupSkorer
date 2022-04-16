@@ -15,14 +15,14 @@ namespace MK_KupSkorer.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Players.OrderBy(x => x.TotalPoints)
+                var query = ctx.Players.OrderBy(x => x.TotalRacePoints)
                     .Select(r => new ReportKardTotalPoints
                     {
                         PlayerId = r.PlayerId,
                         FirstName = r.FirstName,
                         LastName = r.LastName,
                         NickName = r.Nickname,
-                        TotalPoints = r.TotalPoints
+                        TotalPoints = r.TotalRacePoints
                     }) ;
 
                 return query.ToArray();
@@ -33,7 +33,7 @@ namespace MK_KupSkorer.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Players.OrderBy(x => x.TotalPoints)
+                var query = ctx.Players.OrderBy(x => x.TotalRacePoints)
                     .Select(r => new ReportKardTotalWins
                     {
                         PlayerId = r.PlayerId,

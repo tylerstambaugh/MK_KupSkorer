@@ -14,5 +14,7 @@ namespace MK_KupSkorer.Models.PlayerModels
 
         [Display(Name = "Nickname")]
         public string Nickname { get; set; }
+        [Display(Name = "Active?")]
+        public bool IsActive { get; set; }
     }
 }

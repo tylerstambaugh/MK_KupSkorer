@@ -16,7 +16,10 @@ namespace MK_KupSkorer.Models.PlayerModels
         public string PlayerName { get; set; }
         [Display(Name = "Wins")]
         public int PlayerKupWins { get; set; }
-        [Display(Name = "Points")]
+        [Display(Name = "Race Win Points")]
         public double PlayerKupPoints { get; set; }
+
+        [Display(Name = "Bonus Points")]
+        public int PlayerKupBonusPoints { get; set; }
     }
 }

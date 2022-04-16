@@ -12,5 +12,7 @@ namespace MK_KupSkorer.Contracts
         bool UpdateKup(UpdateKup updatedKup);
 
         bool IncrementKupRaceCount(int kupId);
+
+        int RewardBonusPoint(int kupId);
     }
 }

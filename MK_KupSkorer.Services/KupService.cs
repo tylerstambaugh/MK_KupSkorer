@@ -125,9 +125,39 @@ namespace MK_KupSkorer.Services
             }
         }
 
-        //public List<PlayerKupReview> GetListOfPlayerKupReview(int kupId)
-        //{
 
-        //}
+        //returns an int (the playerId) if a player should be awarded a bonus point.
+        public int RewardBonusPoint(int kupId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                //query db for list of race for the kup
+                var races = ctx.Races
+                    .Where(r => r.KupId == kupId)
+                    .ToList();
+
+                //Get list of all winners of the races in the kup
+                List<int?> winnerList = new List<int?>();
+                foreach(Race r in races)
+                {
+                    winnerList.Add(r.WinnerId);
+                }
+
+                //set the 1st race winner Id
+                int? race1winner = winnerList[0];
+                //cycle through rest of races and see if the winner is the same on each
+                bool wonAllRaces = true;
+                for(int i = 1; i < races.Count; i++)
+                {
+                    if (race1winner.HasValue)
+                        if (race1winner != races[i].WinnerId)
+                            wonAllRaces = false;
+                }
+
+                if (wonAllRaces && race1winner.HasValue)
+                 return (int)race1winner;
+                return -1;
+            }
+        }
     }
 }
