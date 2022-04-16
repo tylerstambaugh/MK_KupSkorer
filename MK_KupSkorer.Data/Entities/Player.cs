@@ -37,6 +37,7 @@ namespace MK_KupSkorer.Data
 
         [Display(Name = "Total Wins")]
         public int TotalWins { get; set; } = 0;
+        public bool IsActive { get; set; }
 
     }
 }

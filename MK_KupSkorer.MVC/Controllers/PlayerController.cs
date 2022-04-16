@@ -60,7 +60,7 @@ namespace MK_KupSkorer.MVC.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost] //POST: /player/editPlayerAttributes{id}
         [ValidateAntiForgeryToken]
         public ActionResult EditPlayerAttributes(UpdatePlayerAttributes updatePlayerAttributesModel)
         {
@@ -81,17 +81,35 @@ namespace MK_KupSkorer.MVC.Controllers
         }
 
 
-        [HttpPost] //POST: /player/delete/{id}
+        //player/delete/{id}
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int playerId)
+        public RedirectResult Delete(int playerId)
         {
 
-            if(_playerService.DeletePlayerById(playerId))
-            return RedirectToAction("Index", "Player");
+            if (_playerService.DeletePlayerById(playerId))
+            {
+                //set temp data for success
+                return Redirect("/Player/Index");
+            }
 
             ModelState.AddModelError("", "Player could not be deleted. Please check your inputs and try again.");
-            return RedirectToAction("Index", "Player");
+            return Redirect("/Player/Index");
 
+        }
+        
+        //player/delete/{id}
+        [ValidateAntiForgeryToken]
+        public RedirectResult MarkPlayerInActive(int playerId)
+        {
+
+            if (_playerService.MarkPlayerInactive(playerId))
+            {
+                //set temp data for success
+                return Redirect("/Player/Index");
+            }
+
+            ModelState.AddModelError("", "Player could not be marked inactive. Please check your inputs and try again.");
+            return Redirect("/Player/Index");
 
         }
     }

@@ -13,5 +13,8 @@ namespace MK_KupSkorer.Contracts
         PlayerListItem GetPlayerListItemById(int? playerId);
         bool UpdatePlayerAttributes(UpdatePlayerAttributes playerUpdateAttributesModel, int playerId);
         bool UpdatePlayerPoints(UpdatePlayerPoints playerUpdatePointsModel);
+
+        bool MarkPlayerInactive(int playerId);
+
     }
 }

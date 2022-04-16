@@ -60,6 +60,7 @@
     <Compile Include="IKupService.cs" />
     <Compile Include="IPlayerService.cs" />
     <Compile Include="IRaceService.cs" />
+    <Compile Include="IReportKardService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

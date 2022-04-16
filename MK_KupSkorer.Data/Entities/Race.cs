@@ -8,6 +8,7 @@ namespace MK_KupSkorer.Data
     {
         [Key]
         public int RaceId { get; set; }
+        [Display(Name = "Race Date")]
         public DateTimeOffset? RaceDateTime { get; set; }
 
         [Required]
@@ -17,6 +18,7 @@ namespace MK_KupSkorer.Data
 
         [ForeignKey(nameof(Winner))]
         public int? WinnerId { get; set; }
+        [Display(Name = "Winner")]
         public virtual Player Winner { get; set; }
     }
 }

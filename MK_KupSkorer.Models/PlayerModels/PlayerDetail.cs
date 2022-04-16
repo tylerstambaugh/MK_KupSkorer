@@ -19,6 +19,8 @@ namespace MK_KupSkorer.Models.PlayerModels
         [Display(Name = "NickName")]
         public string Nickname { get; set; }
 
+        public bool IsActive { get; set; }
+
 
         [Display(Name = "Total Points")]
         public double TotalPoints { get; set; }

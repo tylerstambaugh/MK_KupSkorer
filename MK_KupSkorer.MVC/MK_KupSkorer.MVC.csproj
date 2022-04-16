@@ -205,6 +205,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
+    <Compile Include="Controllers\ReportKardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -327,6 +328,8 @@
     <Content Include="Views\Race\UpdateRace.cshtml" />
     <Content Include="Views\Kup\ReviewKup.cshtml" />
     <Content Include="Views\Player\EditPlayerAttributes.cshtml" />
+    <Content Include="Views\ReportKard\Index.cshtml" />
+    <Content Include="Views\Player\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

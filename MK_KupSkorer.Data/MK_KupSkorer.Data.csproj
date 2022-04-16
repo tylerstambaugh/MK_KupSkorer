@@ -108,6 +108,10 @@
     <Compile Include="Migrations\202204092250296_again2.designer.cs">
       <DependentUpon>202204092250296_again2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204160027586_addedIsActiveOnPlayer.cs" />
+    <Compile Include="Migrations\202204160027586_addedIsActiveOnPlayer.designer.cs">
+      <DependentUpon>202204160027586_addedIsActiveOnPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -148,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204092250296_again2.resx">
       <DependentUpon>202204092250296_again2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204160027586_addedIsActiveOnPlayer.resx">
+      <DependentUpon>202204160027586_addedIsActiveOnPlayer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

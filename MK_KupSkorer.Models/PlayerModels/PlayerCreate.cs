@@ -20,5 +20,7 @@ namespace MK_KupSkorer.Models.PlayerModels
         [MinLength(2, ErrorMessage = "Nickname must be at least two characters.")]
         [MaxLength(20, ErrorMessage = "Nickname cannot exceed 20 characters.")]
         public string Nickname { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

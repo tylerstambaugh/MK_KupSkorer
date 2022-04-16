@@ -36,6 +36,7 @@ namespace MK_KupSkorer.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Players
+                    .Where(p => p.IsActive == true)
                     .Select(p => new PlayerListItem
                     {
                         PlayerId = p.PlayerId,
@@ -82,7 +83,8 @@ namespace MK_KupSkorer.Services
                             LastName = dbRow.LastName,
                             Nickname = dbRow.Nickname,
                             TotalPoints = dbRow.TotalPoints,
-                            TotalBonusPoints = dbRow.TotalBonusPoints
+                            TotalBonusPoints = dbRow.TotalBonusPoints,
+                            IsActive = dbRow.IsActive
                         };
                     }
                     return null;
@@ -188,6 +190,28 @@ namespace MK_KupSkorer.Services
                     var playerToDelete = ctx.Players.Find(playerId);
                     if (playerToDelete != null)
                         ctx.Players.Remove(playerToDelete);
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                //do logging
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public bool MarkPlayerInactive(int playerId)
+        {
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var playerToUpdate = ctx.Players.Find(playerId);
+                    if (playerToUpdate != null)
+                    {
+                        playerToUpdate.IsActive = false;
+                    }
                     return ctx.SaveChanges() == 1;
                 }
             }

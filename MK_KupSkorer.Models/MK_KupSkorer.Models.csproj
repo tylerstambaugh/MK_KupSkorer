@@ -72,6 +72,8 @@
     <Compile Include="RaceModels\RaceDetail.cs" />
     <Compile Include="RaceModels\RaceListItem.cs" />
     <Compile Include="RaceModels\UpdateRace.cs" />
+    <Compile Include="ReportKardModels\ReportKardTotalPoints.cs" />
+    <Compile Include="ReportKardModels\ReportKardTotalWins.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
