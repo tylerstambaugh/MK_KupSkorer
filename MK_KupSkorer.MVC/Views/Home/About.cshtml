@@ -2,26 +2,66 @@
     ViewBag.Title = "About";
 }
 
-<div class="about-content">
+<div class="about-content overflow-auto">
     <h3>Origins of the Mario Kark Kompetition Komittee </h3>
 
     <p>
-        The year was 2017 CE., a group of avid Mario Kart enthusiasts were thoroughly enjoying vying for the title of “Fastest Racer” when it was realized that the native skoring capabilities of the console were limited. To address this short-comingof the game, an extended skoring scheme was devised. Thus was born the Mario Kart Kompetition Komittee.
+        The year was 2017 CE., a group of avid Mario Kart enthusiasts were thoroughly enjoying vying for the title of “Fastest Racer” when it was realized that the native skoring capabilities of the console were limited. To address this short-coming of the game, an extended skoring scheme was devised. Thus was born the Mario Kart Kompetition Komittee.
 
     </p>
 
     <p>
-        Since it is a fast paced game with little time between races, the extended skoring rules needed to be simple, but able to truly reflect who was top Kart handler within the Komittee.  A few simple rules were laid out and ratified by all members. They are as follows:
+        Since Mario Kart is a fast paced game with little time between races, the extended skoring rules needed to be simple, but able to truly reflect who was top Kart handler within the Komittee.  A few simple rules were laid out and ratified by all members. They are as follows:
     </p>
 
     <div class="row justify-content-around">
         <div class="col-5">
-            <img src="~/Content/Images/mk_og.jpg" alt="original skorekard" class="about-images" />
+            <img id="img1" src="~/Content/Images/mk_og.jpg" alt="original skorekard" class="about-images" />
+        </div>
+        <div id="imageModal" class="modal">
+            <img class="modal-content" id="img1">
+            <div id="caption"></div>
         </div>
         <div class="col-5">
-            <img src="~/Content/Images/mk_spreadsheet.jpg" alt="first skorekard iteration" class="about-images" />
+            <img id="img1" src="~/Content/Images/mk_spreadsheet.jpg" alt="first skorekard iteration" class="about-images" />
+        </div>
+        <div id="imageModal" class="modal">
+            <img class="modal-content" id="img1">
+            <div id="caption"></div>
         </div>
     </div>
+
+
+
+
+
+
+
+    <script>
+// Get the modal
+var modal = document.getElementById('imageModal');
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('img1');
+var modalImg = document.getElementById("img1");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    modalImg.alt = this.alt;
+    captionText.innerHTML = this.alt;
+}
+
+// When the user clicks on <span> (x), close the modal
+modal.onclick = function() {
+    img1.className += " out";
+    setTimeout(function() {
+       modal.style.display = "none";
+       img1.className = "modal-content";
+     }, 400);
+
+ }
+    </script>
+
 
     <h3>How the Skoring Works:</h3>
     <ol>

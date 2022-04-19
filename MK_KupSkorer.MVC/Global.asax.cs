@@ -43,6 +43,7 @@ namespace MK_KupSkorer.MVC
             builder.RegisterType<PlayerService>().As<IPlayerService>();
             builder.RegisterType<KupService>().As<IKupService>();
             builder.RegisterType<RaceService>().As<IRaceService>();
+            builder.RegisterType<ReportKardService>().As<IReportKardService>();
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();

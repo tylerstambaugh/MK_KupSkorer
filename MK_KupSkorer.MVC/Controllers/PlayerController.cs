@@ -1,5 +1,6 @@
 ﻿using MK_KupSkorer.Contracts;
 using MK_KupSkorer.Models.PlayerModels;
+using System;
 using System.Web.Mvc;
 
 namespace MK_KupSkorer.MVC.Controllers
@@ -23,6 +24,7 @@ namespace MK_KupSkorer.MVC.Controllers
         }
 
         [HttpGet] //GET" Player/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult CreatePlayer()
         {
             return View();
@@ -30,22 +32,31 @@ namespace MK_KupSkorer.MVC.Controllers
 
         [HttpPost] //POST /Player/Create
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreatePlayer(PlayerCreate playerCreateModel)
         {
             if (ModelState.IsValid)
             {
-                if (_playerService.CreatePlayer(playerCreateModel))
+                try
                 {
-                    return RedirectToAction("Index");
+                    if (_playerService.CreatePlayer(playerCreateModel) != -1)
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Player could not be created. Please check your inputs and try again.");
+                    return View(playerCreateModel);
+                }               
             }
-
             ModelState.AddModelError("", "Player could not be created. Please check your inputs and try again.");
             return View(playerCreateModel);
         }
 
 
         [HttpGet] //GET: /Player/EditPlayerAttributes/{id}
+        [Authorize(Roles = "Admin")]
         public ActionResult EditPlayerAttributes(int playerId)
         {
             var playerDetail = _playerService.GetPlayerById(playerId);
@@ -54,7 +65,8 @@ namespace MK_KupSkorer.MVC.Controllers
                 PlayerId = playerDetail.PlayerId,
                 FirstName = playerDetail.FirstName,
                 LastName = playerDetail.LastName,
-                Nickname = playerDetail.Nickname
+                Nickname = playerDetail.Nickname,
+                IsActive = playerDetail.IsActive
             };
 
             return View(model);
@@ -62,6 +74,7 @@ namespace MK_KupSkorer.MVC.Controllers
 
         [HttpPost] //POST: /player/editPlayerAttributes{id}
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditPlayerAttributes(UpdatePlayerAttributes updatePlayerAttributesModel)
         {
             if (ModelState.IsValid)
@@ -99,8 +112,9 @@ namespace MK_KupSkorer.MVC.Controllers
 
         }
         
-        //player/delete/{id}
+        //player/MarkPlayerInactive/{id}
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public RedirectResult MarkPlayerInactive(int playerId)
         {
 
@@ -111,6 +125,23 @@ namespace MK_KupSkorer.MVC.Controllers
             }
 
             ModelState.AddModelError("", "Player could not be marked inactive. Please check your inputs and try again.");
+            return Redirect("/Player/Index");
+
+        }
+
+        //player/MarkPlayerInactive/{id}
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public RedirectResult MarkPlayerActive(int playerId)
+        {
+
+            if (_playerService.MarkPlayerActive(playerId))
+            {
+                //set temp data for success
+                return Redirect("/Player/Index");
+            }
+
+            ModelState.AddModelError("", "Player could not be marked active. Please check your inputs and try again.");
             return Redirect("/Player/Index");
 
         }

@@ -5,7 +5,7 @@ namespace MK_KupSkorer.Contracts
 {
     public interface IPlayerService
     {
-        bool CreatePlayer(PlayerCreate playerCreateModel);
+        int CreatePlayer(PlayerCreate playerCreateModel);
         bool DeletePlayerById(int playerId);
         PlayerDetail GetPlayerById(int playerId);
         IEnumerable<PlayerListItem> GetActivePlayerList();
@@ -17,6 +17,8 @@ namespace MK_KupSkorer.Contracts
         bool AddBonusPointToPlayer(int playerId);
 
         bool MarkPlayerInactive(int playerId);
+
+        bool MarkPlayerActive(int playerId);
 
     }
 }

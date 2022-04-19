@@ -9,7 +9,6 @@ namespace MK_KupSkorer.Contracts
 {
     public interface IReportKardService
     {
-        IEnumerable<ReportKardTotalPoints> GetTotalPointsReportKard();
-        IEnumerable<ReportKardTotalWins> GetTotalWinsReportKard();
+        IEnumerable<ReportKardRacer> GetRacerReportKard();
     }
 }

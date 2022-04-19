@@ -9,11 +9,11 @@ namespace MK_KupSkorer.Services
 {
     public class PlayerService : IPlayerService
     {
-        public bool CreatePlayer(PlayerCreate playerCreateModel)
+        public int CreatePlayer(PlayerCreate playerCreateModel)
         {
             if (playerCreateModel == null)
             {
-                return false;
+                throw new ArgumentNullException(nameof(playerCreateModel));
             }
 
             using (var ctx = new ApplicationDbContext())
@@ -26,7 +26,9 @@ namespace MK_KupSkorer.Services
                     IsActive = true
                 };
                 ctx.Players.Add(playerToCreate);
-                return ctx.SaveChanges() == 1;
+                if (ctx.SaveChanges() == 1)
+                    return playerToCreate.PlayerId;
+                return -1;
             }
         }
 
@@ -158,6 +160,7 @@ namespace MK_KupSkorer.Services
                     playerToUpdate.FirstName = playerUpdateAttributesModel.FirstName;
                     playerToUpdate.LastName = playerUpdateAttributesModel.LastName;
                     playerToUpdate.Nickname = playerUpdateAttributesModel.Nickname;
+                    playerToUpdate.IsActive = playerUpdateAttributesModel.IsActive;
 
                     return ctx.SaveChanges() == 1;
                 }
@@ -247,6 +250,28 @@ namespace MK_KupSkorer.Services
                     if (playerToUpdate != null)
                     {
                         playerToUpdate.IsActive = false;
+                    }
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                //do logging
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
+
+        public bool MarkPlayerActive(int playerId)
+        {
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var playerToUpdate = ctx.Players.Find(playerId);
+                    if (playerToUpdate != null)
+                    {
+                        playerToUpdate.IsActive = true;
                     }
                     return ctx.SaveChanges() == 1;
                 }

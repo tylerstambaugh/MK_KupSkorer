@@ -8,49 +8,65 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Edit Player</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.PlayerId)
+<div class="form-horizontal ">
+    <h4>Edit Player</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PlayerId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nickname, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nickname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nickname, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <br />
-        <div class="form-group row">
-            <div class="col-md-offset-2 col-md-1">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-            <div class="col-md-offset-2 col-md-1">
-                <input type="submit" value="Deactivate" formaction="@Url.Action("MarkPlayerInActive")" formmethod="post" class="btn btn-secondary" onclick="return confirm('Are you sure you want to Deactivate this player? You will no longer be able to select them for racing.');" />
-            </div>
-            <div class="col-md-offset-2 col-md-1">
-                <input type="submit" value="Delete" formaction="@Url.Action("Delete")" formmethod="post" class=" btn btn-secondary" onclick="return confirm('Are you sure you want to Delete this player? This action is permanent and cannot be undone buster.');" />
-            </div>
+    <div class="form-group create-player-input">
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-lg-5 create-player-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group create-player-input">
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2 col-lg-5 create-player-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group create-player-input">
+        @Html.LabelFor(model => model.Nickname, htmlAttributes: new { @class = "control-label col-md-2 col-lg-5" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nickname, new { htmlAttributes = new { @class = "form-control create-player-label" } })
+            @Html.ValidationMessageFor(model => model.Nickname, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group create-player-input">
+        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2 col-lg-5 create-player-label" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-md-offset-2 col-md-1">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+
+        @if (Model.IsActive == true)
+        {
+            <div class="col-md-offset-2 col-lg-1">
+                <input type="submit" value="Deactivate" formaction="@Url.Action("MarkPlayerInactive")" formmethod="post" class="btn btn-secondary" onclick="return confirm('Are you sure you want to Deactivate this player? You will no longer be able to select them for racing.');" />
+            </div>
+        }
+        @if (Model.IsActive == false)
+        {
+            <div class="col-md-offset-2 col-lg-1">
+                <input type="submit" value="Reactivate" formaction="@Url.Action("MarkPlayerActive")" formmethod="post" class="btn btn-secondary" onclick="return confirm('Are you sure you want to reactivate this player? You will be able to select them for racing.');" />
+            </div>
+        }
+
+
+        <div class="col-md-offset-2 col-lg-1">
+            <input type="submit" value="Delete" formaction="@Url.Action("Delete")" formmethod="post" class=" btn btn-secondary" onclick="return confirm('Are you sure you want to Delete this player? This action is permanent and cannot be undone buster.');" />
+        </div>
+    </div>
+</div>
 }
 
 @*using (@Html.BeginForm())

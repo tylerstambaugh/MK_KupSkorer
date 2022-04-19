@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MK_KupSkorer.MVC.Controllers
 {
+    [Authorize]
     public class RaceController : Controller
     {
         private readonly IRaceService _raceService;

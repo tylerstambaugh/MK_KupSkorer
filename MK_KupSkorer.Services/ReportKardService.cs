@@ -11,40 +11,25 @@ namespace MK_KupSkorer.Services
 {
     public class ReportKardService : IReportKardService
     {
-        public IEnumerable<ReportKardTotalPoints> GetTotalPointsReportKard()
+        public IEnumerable<ReportKardRacer> GetRacerReportKard()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Players.OrderBy(x => x.TotalRacePoints)
-                    .Select(r => new ReportKardTotalPoints
+                    .Select(r => new ReportKardRacer
                     {
                         PlayerId = r.PlayerId,
                         FirstName = r.FirstName,
                         LastName = r.LastName,
-                        NickName = r.Nickname,
-                        TotalPoints = r.TotalRacePoints
+                        Nickname = r.Nickname,
+                        TotalWins = r.TotalWins,
+                        TotalRacePoints = r.TotalRacePoints,
+                        TotalBonusPoints = r.TotalBonusPoints
                     }) ;
 
                 return query.ToArray();
             }
         }
 
-        public IEnumerable<ReportKardTotalWins> GetTotalWinsReportKard()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx.Players.OrderBy(x => x.TotalRacePoints)
-                    .Select(r => new ReportKardTotalWins
-                    {
-                        PlayerId = r.PlayerId,
-                        FirstName = r.FirstName,
-                        LastName = r.LastName,
-                        NickName = r.Nickname,
-                        TotalWins = r.TotalWins
-                    });
-
-                return query.ToArray();
-            }
-        }
     }
 }

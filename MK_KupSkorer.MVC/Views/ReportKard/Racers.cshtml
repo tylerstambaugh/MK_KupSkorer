@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MK_KupSkorer.Models.ReportKardModels.ReportKardRacer>
+@{
+    ViewBag.Title = "Racer Report Kard";
+
+}
+<br />
+
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-striped table-hover sortable">
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="10">No Record's found.</td>
+            </tr>
+
+        }
+        else
+        {
+            <thead class="bg-light">
+                <tr class="danger">
+                    <th> First Name</th>
+                    <th> Last Name</th>
+                    <th> Nickname</th>
+                    <th> Total Wins</th>
+                    <th> Total Race Points</th>
+                    <th> Total Bonus Points</th>
+                    
+                </tr>
+            </thead>
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Nickname</td>
+                    <td>@item.TotalWins</td>
+                    <td>@item.TotalRacePoints</td>
+                    <td>@item.TotalBonusPoints</td>
+                </tr>
+
+            }
+        }
+    </table>
+</div>  

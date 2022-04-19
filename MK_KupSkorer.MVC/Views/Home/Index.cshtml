@@ -6,12 +6,15 @@
     <br />
     <div class="home-layout">
         <div class="row justify-content-around home-layout-row">
+            @if(User.IsInRole("Admin"))
+            { 
             <div class="col-4">
                 <a href="@Url.Action("Index", "Player", null)">
                     <img src="~/Content/Images/racers.png" class="home-layout-image img-thumbnail" />
                 </a>
                 <p class="home-layout-text">Create and Edit Racers</p>
             </div>
+            }
             <div class="col-4">
                 <a href="@Url.Action("StartKup", "Kup", null)">
                     <img src="~/Content/Images/kup.PNG" class="img-thumbnail home-layout-image" />

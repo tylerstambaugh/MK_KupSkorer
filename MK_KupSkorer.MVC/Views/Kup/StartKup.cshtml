@@ -16,15 +16,15 @@
     <div class="form-group">
         @Html.Label("Select Player 1", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Player1Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", })
+            @Html.DropDownListFor(model => model.Player1Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player1" })
             @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Select Player 2", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Player2Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", })
+        <div class="col-md-10 ">
+            @Html.DropDownListFor(model => model.Player2Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player2" })
             @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
         </div>
     </div>
@@ -32,17 +32,22 @@
     <div class="form-group">
         @Html.Label("Select Player 3", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Player3Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", })
+            @Html.DropDownListFor(model => model.Player3Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player3" })
             @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.Label("Select Player 4", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Select Player 4", htmlAttributes: new { @class = "control-label col-md-2"})
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Player4Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", })
+            @Html.DropDownListFor(model => model.Player4Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player4" })
             @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
         </div>
+    </div>
+
+
+    <div id="manySelects">
+        put them here
     </div>
 
     <br />
@@ -57,4 +62,46 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+
+
+<script type="text/javascript">
+    
+    var playerListz = [];
+
+    playerListz.push({ text: 'Select One', value: '-1' });
+        @foreach(var item in ViewData["Players"] as IEnumerable<SelectListItem>)
+    {
+        @:console.log("@item");
+        @:playerListz.push({ text: "@item.Text", value: "@item.Value" });
+    }
+
+   // select many
+    $(document).ready(function () {
+            for (var i = 1; i < 5; i++) {
+                $('#manySelects')
+                    .append(
+                        $(document.createElement('label')).prop({
+                            for: 'player' + i
+                        }).html('Player ' + i)
+                    )
+                    .append(
+                        $(document.createElement('select')).prop({
+                            id: 'Player' + i,
+                            name: 'Player' + i
+                        })
+                )
+
+                for (var j = 0; j < playerListz.length; j++) {
+                    $('#Player' + i).append($(document.createElement('option')).prop({
+                        value: playerListz[j].value,
+                        text: playerListz[j].text
+                    }))
+                }
+                $('#Player' + i).val(-1);
+            }
+        
+    });
+
+</script>
 }

@@ -20,10 +20,13 @@ namespace MK_KupSkorer.MVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/moment.min.js",
+                      "~/Scripts/bootstrap-sortable.js"));
 
             bundles.Add(new Bundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstratp-sortable.css",
                       "~/Content/site.css"));
         }
     }
