@@ -45,8 +45,8 @@ namespace MK_KupSkorer.MVC.Controllers
 
                     int raceId =  _raceService.CreateRace(new RaceCreate { KupId = kupId });
                     
-                    return Json(Url.Action("UpdateRace", "Race", new {raceId = raceId}));
-                    //return RedirectToAction("UpdateRace", "Race", new { raceId });
+                   // return Json(Url.Action("UpdateRace", "Race", new {raceId = raceId}));
+                    return RedirectToAction("UpdateRace", "Race", new { raceId });
                 }
             }
             ModelState.AddModelError("", "Kup could not be created. Please check your inputs and try again.");
