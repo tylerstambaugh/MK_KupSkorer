@@ -5,6 +5,7 @@ using MK_KupSkorer.Models.RaceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,7 +34,7 @@ namespace MK_KupSkorer.MVC.Controllers
 
         [HttpPost] //POST /kup/startKup
         [ValidateAntiForgeryToken]
-        public ActionResult StartKup(KupCreate kupCreateModel)
+        public async Task <ActionResult> StartKup(KupCreate kupCreateModel)
         {
             if(ModelState.IsValid)
             {
@@ -44,7 +45,8 @@ namespace MK_KupSkorer.MVC.Controllers
 
                     int raceId = _raceService.CreateRace(new RaceCreate { KupId = kupId });
 
-                    return RedirectToAction("UpdateRace", "Race", new { raceId });
+                    return Json(Url.Action("UpdateRace", "Race", new {raceId = raceId}));
+                    //return RedirectToAction("UpdateRace", "Race", new { raceId });
                 }
             }
             ModelState.AddModelError("", "Kup could not be created. Please check your inputs and try again.");

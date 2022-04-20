@@ -6,80 +6,39 @@
 
 <h2>Configure Kup</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal align-items-center">
-    <hr />
-    @Html.ValidationSummary(true, "You don't know what you're doing", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.Label("Select Player 1", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Player1Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player1" })
-            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
+<form id="ajaxForm">
+
+    <div>
+        <h3>select players JQuery/ AJAX</h3>
+        <div id="playerSelects" class="form-group ">
+        </div>
+        <div>
+            <button class="btn btn-secondary" id="addPlayerSelect">Add Player</button>
+
+        </div>
+        <div>
+            <button class="btn btn-primary" id="kreateKupButton" type="submit">Kreate Kup</button>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.Label("Select Player 2", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10 ">
-            @Html.DropDownListFor(model => model.Player2Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player2" })
-            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Select Player 3", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Player3Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player3" })
-            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Select Player 4", htmlAttributes: new { @class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Player4Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player4" })
-            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div id="manySelects">
-        put them here
-    </div>
-
-    <br />
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Start Kup" class="btn btn-primary" />
-        </div>
-    </div>
-</div>
-}
-
+</form>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquery")
 
+    <script type="text/javascript">
+    var playerList = [];
 
-<script type="text/javascript">
-    
-    var playerListz = [];
-
-    playerListz.push({ text: 'Select One', value: '-1' });
+    playerList.push({ text: 'Select One', value: '-1' });
         @foreach(var item in ViewData["Players"] as IEnumerable<SelectListItem>)
     {
-        @:console.log("@item");
-        @:playerListz.push({ text: "@item.Text", value: "@item.Value" });
+        @:playerList.push({ text: "@item.Text", value: "@item.Value" });
     }
 
-   // select many
+   // player selects
     $(document).ready(function () {
-            for (var i = 1; i < 5; i++) {
-                $('#manySelects')
+            for (var i = 1; i < 3; i++) {
+                $('#playerSelects')
                     .append(
                         $(document.createElement('label')).prop({
                             for: 'player' + i
@@ -89,19 +48,96 @@
                         $(document.createElement('select')).prop({
                             id: 'Player' + i,
                             name: 'Player' + i
-                        })
+                        }).addClass("form-control")
                 )
 
-                for (var j = 0; j < playerListz.length; j++) {
+                for (var j = 0; j < playerList.length; j++) {
                     $('#Player' + i).append($(document.createElement('option')).prop({
-                        value: playerListz[j].value,
-                        text: playerListz[j].text
-                    }))
+                        value: playerList[j].value,
+                        text: playerList[j].text
+                    }).addClass("form-control")
+                    )
                 }
                 $('#Player' + i).val(-1);
-            }
-        
-    });
 
-</script>
-}
+            }
+    });
+    </script>
+
+
+    <script type="text/javascript">
+        // AJAX POST to KreateKup
+        var token = '@Html.AntiForgeryToken()';
+        token = $(token).val();
+        $("#kreateKupButton").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/kup/StartKup",
+                data: { Player1Id: $('#Player1').val(), Player2Id: $('#Player2').val(), __RequestVerificationToken: token},
+                success: function (response, textStatus, jqXHR) {
+                    console.log("ajax success");
+                    console.log("response: " + response);
+                    window.location = response;
+                },
+                error: function () {
+                    alert("error");
+                    console.log("didn't work");
+                }
+
+            });
+        })
+    </script>
+
+    }
+     
+    @*@using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal align-items-center">
+                    <hr />
+                    @Html.ValidationSummary(true, "You don't know what you're doing", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Select Player 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Player1Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player1" })
+                            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Select Player 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 ">
+                            @Html.DropDownListFor(model => model.Player2Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player2" })
+                            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Select Player 3", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Player3Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player3" })
+                            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Select Player 4", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Player4Id, ViewData["Players"] as IEnumerable<SelectListItem>, "Select Player", htmlAttributes: new { @class = "form-control", id = "player4" })
+                            @Html.ValidationMessage("KupCreate", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Start Kup" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+
+
+            }*@
+
+    

@@ -32,7 +32,7 @@ namespace MK_KupSkorer.Services
 
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ctx));
 
-            var myUser = ctx.Users.SingleOrDefault(u => u.Email == "email@addr.com");
+            var myUser = ctx.Users.SingleOrDefault(u => u.UserName == "Dusty Bottoms");
             if (myUser != null)
             {
                 var result = userManager.AddToRole(myUser.Id, "Admin");
