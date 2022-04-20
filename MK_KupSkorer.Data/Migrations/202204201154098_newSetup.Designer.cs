@@ -7,13 +7,13 @@ namespace MK_KupSkorer.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class again2 : IMigrationMetadata
+    public sealed partial class newSetup : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(again2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newSetup));
         
         string IMigrationMetadata.Id
         {
-            get { return "202204092250296_again2"; }
+            get { return "202204201154098_newSetup"; }
         }
         
         string IMigrationMetadata.Source

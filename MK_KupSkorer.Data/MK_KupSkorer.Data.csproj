@@ -64,57 +64,9 @@
     <Compile Include="Entities\Race.cs" />
     <Compile Include="IdentityUserLoginConfiguration.cs" />
     <Compile Include="IdentityUserRoleConfiguration.cs" />
-    <Compile Include="Migrations\202203292256341_firstMigration.cs" />
-    <Compile Include="Migrations\202203292256341_firstMigration.designer.cs">
-      <DependentUpon>202203292256341_firstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202203310047308_newMigration.cs" />
-    <Compile Include="Migrations\202203310047308_newMigration.designer.cs">
-      <DependentUpon>202203310047308_newMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204022342347_nextMigration.cs" />
-    <Compile Include="Migrations\202204022342347_nextMigration.designer.cs">
-      <DependentUpon>202204022342347_nextMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204040025110_changeDateTimeToDateTimeOffset.cs" />
-    <Compile Include="Migrations\202204040025110_changeDateTimeToDateTimeOffset.designer.cs">
-      <DependentUpon>202204040025110_changeDateTimeToDateTimeOffset.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204060051444_changes.cs" />
-    <Compile Include="Migrations\202204060051444_changes.designer.cs">
-      <DependentUpon>202204060051444_changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204060104243_moreChanges.cs" />
-    <Compile Include="Migrations\202204060104243_moreChanges.designer.cs">
-      <DependentUpon>202204060104243_moreChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204091537294_newMigration1.cs" />
-    <Compile Include="Migrations\202204091537294_newMigration1.designer.cs">
-      <DependentUpon>202204091537294_newMigration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204091719113_newMigration2.cs" />
-    <Compile Include="Migrations\202204091719113_newMigration2.designer.cs">
-      <DependentUpon>202204091719113_newMigration2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204092006158_nextMigration1.cs" />
-    <Compile Include="Migrations\202204092006158_nextMigration1.designer.cs">
-      <DependentUpon>202204092006158_nextMigration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204092211560_again.cs" />
-    <Compile Include="Migrations\202204092211560_again.designer.cs">
-      <DependentUpon>202204092211560_again.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204092250296_again2.cs" />
-    <Compile Include="Migrations\202204092250296_again2.designer.cs">
-      <DependentUpon>202204092250296_again2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204160027586_addedIsActiveOnPlayer.cs" />
-    <Compile Include="Migrations\202204160027586_addedIsActiveOnPlayer.designer.cs">
-      <DependentUpon>202204160027586_addedIsActiveOnPlayer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204161450307_addedRoles.cs" />
-    <Compile Include="Migrations\202204161450307_addedRoles.designer.cs">
-      <DependentUpon>202204161450307_addedRoles.cs</DependentUpon>
+    <Compile Include="Migrations\202204201154098_newSetup.cs" />
+    <Compile Include="Migrations\202204201154098_newSetup.designer.cs">
+      <DependentUpon>202204201154098_newSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,44 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202203292256341_firstMigration.resx">
-      <DependentUpon>202203292256341_firstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203310047308_newMigration.resx">
-      <DependentUpon>202203310047308_newMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204022342347_nextMigration.resx">
-      <DependentUpon>202204022342347_nextMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204040025110_changeDateTimeToDateTimeOffset.resx">
-      <DependentUpon>202204040025110_changeDateTimeToDateTimeOffset.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204060051444_changes.resx">
-      <DependentUpon>202204060051444_changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204060104243_moreChanges.resx">
-      <DependentUpon>202204060104243_moreChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204091537294_newMigration1.resx">
-      <DependentUpon>202204091537294_newMigration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204091719113_newMigration2.resx">
-      <DependentUpon>202204091719113_newMigration2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204092006158_nextMigration1.resx">
-      <DependentUpon>202204092006158_nextMigration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204092211560_again.resx">
-      <DependentUpon>202204092211560_again.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204092250296_again2.resx">
-      <DependentUpon>202204092250296_again2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204160027586_addedIsActiveOnPlayer.resx">
-      <DependentUpon>202204160027586_addedIsActiveOnPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204161450307_addedRoles.resx">
-      <DependentUpon>202204161450307_addedRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204201154098_newSetup.resx">
+      <DependentUpon>202204201154098_newSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

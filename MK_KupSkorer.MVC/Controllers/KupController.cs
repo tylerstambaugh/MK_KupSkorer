@@ -34,7 +34,7 @@ namespace MK_KupSkorer.MVC.Controllers
 
         [HttpPost] //POST /kup/startKup
         [ValidateAntiForgeryToken]
-        public async Task <ActionResult> StartKup(KupCreate kupCreateModel)
+        public ActionResult StartKup(KupCreate kupCreateModel)
         {
             if(ModelState.IsValid)
             {
@@ -43,8 +43,8 @@ namespace MK_KupSkorer.MVC.Controllers
                 {
                    // TempData.Add("", $"Kup {kupId} was kreated.");
 
-                    int raceId = _raceService.CreateRace(new RaceCreate { KupId = kupId });
-
+                    int raceId =  _raceService.CreateRace(new RaceCreate { KupId = kupId });
+                    
                     return Json(Url.Action("UpdateRace", "Race", new {raceId = raceId}));
                     //return RedirectToAction("UpdateRace", "Race", new { raceId });
                 }

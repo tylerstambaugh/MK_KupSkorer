@@ -83,4 +83,11 @@ namespace MK_KupSkorer.MVC.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class ConfigureIdentityUserRole
+    {
+        public string UserId { get; set; }
+        public string Role { get; set; }
+
+    }
 }

@@ -333,6 +333,13 @@ namespace MK_KupSkorer.MVC.Controllers
             base.Dispose(disposing);
         }
 
+        [HttpGet]
+        [Authorize (Roles = "Admin")]
+        public ActionResult ManageIdentityUserRole()
+        {
+            return View();
+        }
+
 #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

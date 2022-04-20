@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstMigration : DbMigration
+    public partial class newSetup : DbMigration
     {
         public override void Up()
         {
@@ -12,17 +12,19 @@
                 c => new
                     {
                         KupId = c.Int(nullable: false, identity: true),
-                        KupDate = c.DateTime(nullable: false),
+                        RaceCount = c.Int(nullable: false),
+                        KupDateTime = c.DateTimeOffset(nullable: false, precision: 7),
+                        UpdatedDateTime = c.DateTimeOffset(nullable: false, precision: 7),
                         Player1Id = c.Int(nullable: false),
                         Player2Id = c.Int(nullable: false),
-                        Player3Id = c.Int(nullable: true),
-                        Player4Id = c.Int(nullable: true),
+                        Player3Id = c.Int(),
+                        Player4Id = c.Int(),
                     })
                 .PrimaryKey(t => t.KupId)
                 .ForeignKey("dbo.Player", t => t.Player1Id, cascadeDelete: true)
                 .ForeignKey("dbo.Player", t => t.Player2Id, cascadeDelete: false)
-                .ForeignKey("dbo.Player", t => t.Player3Id, cascadeDelete: false)
-                .ForeignKey("dbo.Player", t => t.Player4Id, cascadeDelete: false)
+                .ForeignKey("dbo.Player", t => t.Player3Id)
+                .ForeignKey("dbo.Player", t => t.Player4Id)
                 .Index(t => t.Player1Id)
                 .Index(t => t.Player2Id)
                 .Index(t => t.Player3Id)
@@ -33,12 +35,14 @@
                 c => new
                     {
                         PlayerId = c.Int(nullable: false, identity: true),
-                        UserId = c.String(maxLength: 128, nullable: true),
+                        UserId = c.String(maxLength: 128),
                         FirstName = c.String(nullable: false, maxLength: 20),
                         LastName = c.String(nullable: false, maxLength: 20),
                         Nickname = c.String(maxLength: 20),
-                        TotalPoints = c.Double(nullable: false),
+                        TotalRacePoints = c.Double(nullable: false),
                         TotalBonusPoints = c.Int(nullable: false),
+                        TotalWins = c.Int(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.PlayerId)
                 .ForeignKey("dbo.ApplicationUser", t => t.UserId)
@@ -110,12 +114,15 @@
                 c => new
                     {
                         RaceId = c.Int(nullable: false, identity: true),
-                        RaceDateTime = c.DateTime(nullable: false),
+                        RaceDateTime = c.DateTimeOffset(precision: 7),
                         KupId = c.Int(nullable: false),
+                        WinnerId = c.Int(),
                     })
                 .PrimaryKey(t => t.RaceId)
                 .ForeignKey("dbo.Kup", t => t.KupId, cascadeDelete: true)
-                .Index(t => t.KupId);
+                .ForeignKey("dbo.Player", t => t.WinnerId)
+                .Index(t => t.KupId)
+                .Index(t => t.WinnerId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -131,6 +138,7 @@
         public override void Down()
         {
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
+            DropForeignKey("dbo.Race", "WinnerId", "dbo.Player");
             DropForeignKey("dbo.Race", "KupId", "dbo.Kup");
             DropForeignKey("dbo.Kup", "Player4Id", "dbo.Player");
             DropForeignKey("dbo.Kup", "Player3Id", "dbo.Player");
@@ -140,6 +148,7 @@
             DropForeignKey("dbo.IdentityUserRole", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
+            DropIndex("dbo.Race", new[] { "WinnerId" });
             DropIndex("dbo.Race", new[] { "KupId" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });

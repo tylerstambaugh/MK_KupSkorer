@@ -27,7 +27,10 @@ textarea {
 
 
 .home-layout {
-
+    overflow: auto;
+    padding: 15px 15px 15px 35px;
+    height: 600px;
+    margin-bottom: 210px;
 }
 
 .home-layout-text {
@@ -38,6 +41,7 @@ textarea {
 }
 
 .home-layout-row {
+
     height: 300px;
 }
 

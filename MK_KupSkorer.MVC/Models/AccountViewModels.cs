@@ -65,8 +65,8 @@ namespace MK_KupSkorer.MVC.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
+        [Display(Name = "Display Name")]
+        public string DisplayName { get; set; }
 
         [Required]
         [EmailAddress]
