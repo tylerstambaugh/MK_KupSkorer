@@ -4,7 +4,7 @@
 
 ## If there isn't any seed data, you'll need to create at least 2 players to skore a kup.
 
-##The idea for the app as well as skoring is detailed on the About page.
+##  The idea for the app as well as skoring is detailed on the About page.
 Flow consists of selecting 2 - 4 players in the 'Kup', then selecting the winner for each race. This goes through 4 races before dispalying a Kup results page. 
 
 ## To see how racers stack up, you can use the Report Kard option and view the one existing report I added at the time of this writing. 
