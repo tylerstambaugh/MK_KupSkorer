@@ -1,6 +1,6 @@
 # MK_KupSkorer
 
-## You'll need to register a user with email5@addr.com, using specialKode = 'mariokart' in order to have a user with permission to create/edit players.
+## You'll need to register a user with email5@addr.com, using specialKode = 'mariokart' in order to have a user with permission to create/edit players. Restart the app after registering the user, clear your browser cache, and you should see a new option on the index page to create/edit players.
 
 ## If there isn't any seed data, you'll need to create at least 2 players to skore a kup.
 
