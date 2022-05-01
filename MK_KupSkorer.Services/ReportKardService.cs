@@ -31,5 +31,41 @@ namespace MK_KupSkorer.Services
             }
         }
 
+        public IEnumerable<ReportKardKupRace> GetKupReportKardByKupId(int kupId)
+        {
+           using (var ctx = new ApplicationDbContext())
+            {
+                var kupQuery = ctx.Kups.Find(kupId);
+                if (kupQuery == null)
+                {
+                    return null;
+                }
+
+                var raceQuery = ctx.Races
+                    .Where(r => r.KupId == kupId);
+
+                if (raceQuery.Count() != 4)
+                {
+                    return null;
+                }
+
+               var listToReturn = raceQuery.Select(k => new ReportKardKupRace
+                {
+                    KupId = k.KupId,
+                    RaceDateTime = (DateTimeOffset)k.RaceDateTime,
+                    Winner = k.Winner,
+                    RaceId = k.RaceId
+                });
+
+                foreach(ReportKardKupRace r in listToReturn)
+                {
+                    r.KupId = kupQuery.KupId;
+                    r.KupDateTime = kupQuery.KupDateTime;
+                }
+
+                return listToReturn.ToArray();
+            }
+        }
+
     }
 }

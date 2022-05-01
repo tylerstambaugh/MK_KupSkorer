@@ -29,5 +29,24 @@ namespace MK_KupSkorer.MVC.Controllers
             return View(model);
         }
 
+
+        [HttpGet]  //GET: /ReportKards/Kups
+        public ActionResult Kups()
+        {
+            return View();
+        }
+
+        [HttpPost] //POST /ReportKards/GetKupReportKardById/{KupId}
+        [ValidateAntiForgeryToken]
+        public ActionResult GetKupReportKardByKupId(int kupId)
+        {
+            var model = _reportKardSerivce.GetKupReportKardByKupId(kupId);
+            if (model != null)
+            return View(model);
+
+            ModelState.AddModelError("", $"Kup ID {kupId} not found");
+            return RedirectToAction("Kups", "ReportKard");
+        }
+
     }
 }

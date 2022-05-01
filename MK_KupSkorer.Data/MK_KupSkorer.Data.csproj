@@ -64,9 +64,9 @@
     <Compile Include="Entities\Race.cs" />
     <Compile Include="IdentityUserLoginConfiguration.cs" />
     <Compile Include="IdentityUserRoleConfiguration.cs" />
-    <Compile Include="Migrations\202204201154098_newSetup.cs" />
-    <Compile Include="Migrations\202204201154098_newSetup.designer.cs">
-      <DependentUpon>202204201154098_newSetup.cs</DependentUpon>
+    <Compile Include="Migrations\202205011606171_initialSetup.cs" />
+    <Compile Include="Migrations\202205011606171_initialSetup.designer.cs">
+      <DependentUpon>202205011606171_initialSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,8 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204201154098_newSetup.resx">
-      <DependentUpon>202204201154098_newSetup.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205011606171_initialSetup.resx">
+      <DependentUpon>202205011606171_initialSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

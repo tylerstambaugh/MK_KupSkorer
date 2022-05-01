@@ -10,5 +10,6 @@ namespace MK_KupSkorer.Contracts
     public interface IReportKardService
     {
         IEnumerable<ReportKardRacer> GetRacerReportKard();
+        IEnumerable<ReportKardKupRace> GetKupReportKardByKupId(int kupId);
     }
 }

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MK_KupSkorer.Models.ReportKardModels.ReportKardKupRace>
+
+@{
+    ViewBag.Title = "GetKupReportKardByKupId";
+}
+
+<h2>Kup ID: </h2>
+<h2> Kup Date: </h2>
+
+<div class="report-kard-table">
+    <table id="reportKardKupRace" class="display" style="width:100%">
+        @if (Model is null)
+        {
+            <tr>
+                <td colspan="10">No Record's found.</td>
+            </tr>
+        }
+        else
+        {
+            <thead>
+                <tr>
+                    <th>Race ID</th>
+                    <th>Date</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.RaceId</td>
+                        <td>@item.RaceDateTime</td>
+                        <td>@item.Winner.Nickname</td>
+                    </tr>
+                }
+            </tbody>
+        }
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datatables")
+    @Styles.Render("~/content/datatable")
+
+<script>
+    $(document).ready(function () {
+        $('#reportKardKupRace').DataTable();
+    });
+</script>
+
+}

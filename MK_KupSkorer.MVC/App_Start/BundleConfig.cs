@@ -14,10 +14,18 @@ namespace MK_KupSkorer.MVC
             bundles.Add(new Bundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new Bundle("~/bundles/datatables").Include(
+            "~/Scripts/DataTables/jquery.dataTables.js",
+            "~/Scripts/DataTables/jquery.dataTables.min.js",
+            "~/Scripts/DataTables/dataTables.bootstrap.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new Bundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+
+            bundles.Add(new Bundle("~/Content/datatable").Include(
+                  "~/Content/DataTables/css/dataTables.bootstrap.css"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",

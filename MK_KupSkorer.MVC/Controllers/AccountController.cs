@@ -166,7 +166,7 @@ namespace MK_KupSkorer.MVC.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                     AddErrors(result);
-                    ModelState.AddModelError("signupKode", "Invalid Signup Kode Loser.");
+                    ModelState.AddModelError("", "Invalid Signup Kode Loser.");
                 }
             }
 
