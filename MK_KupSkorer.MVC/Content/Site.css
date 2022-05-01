@@ -138,6 +138,12 @@ textarea {
     grid-column: 1 / 3;
 }
 
+
+.report-kard-table {
+    background-color: lightgoldenrodyellow;
+
+}
+
 /*#region Image Zoom */
 
 .modal {
