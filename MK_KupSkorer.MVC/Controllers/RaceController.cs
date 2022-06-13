@@ -44,7 +44,7 @@ namespace MK_KupSkorer.MVC.Controllers
             if (_raceService.IsLastRace(raceId))
             {
                 _raceService.UpdateRace(updateRaceModel, raceId);
-                return RedirectToAction("ReviewKup", "Kup", new { kupId = currentRace.KupId });
+                return RedirectToAction("AwardKupBonusPoint", "Kup", new { kupId = currentRace.KupId });
             }
 
             //increment the race count on the Kup

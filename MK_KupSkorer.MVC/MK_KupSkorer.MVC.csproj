@@ -577,6 +577,7 @@
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\ReportKard\Kups.cshtml" />
     <Content Include="Views\ReportKard\GetKupReportKardByKupId.cshtml" />
+    <Content Include="Views\Kup\AwardKupBonusPoint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

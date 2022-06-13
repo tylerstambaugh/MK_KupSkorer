@@ -148,6 +148,12 @@ namespace MK_KupSkorer.Services
             }
 
         }
+        public bool IsLastRace(int raceId)
+        {
+            if (GetKupRaceCountByRaceId(raceId) == 4)
+                return true;
+            return false;
+        }
 
         public int GetKupRaceCountByRaceId(int raceId)
         {
@@ -161,13 +167,7 @@ namespace MK_KupSkorer.Services
                 
             }
         }
-
-        public bool IsLastRace(int raceId)
-        {
-            if (GetKupRaceCountByRaceId(raceId) == 4)
-                return true;
-            return false;
-        }
+     
         public bool DeleteRaceById(int raceId)
         {
             try
@@ -195,7 +195,7 @@ namespace MK_KupSkorer.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var race = ctx.Races.Find(raceId);
-
+                // add checks for if CPU was winner and handle correctly.
                 if(race != null)
                 {
                     return (int)race.WinnerId;
