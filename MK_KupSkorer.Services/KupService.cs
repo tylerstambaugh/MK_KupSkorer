@@ -25,7 +25,8 @@ namespace MK_KupSkorer.Services
                     Player1Id = model.Player1Id,
                     Player2Id = model.Player2Id,
                     Player3Id = model.Player3Id,
-                    Player4Id = model.Player4Id
+                    Player4Id = model.Player4Id,
+                    RaceCount = 1
                 };
                 ctx.Kups.Add(kupToCreate);
                 if (ctx.SaveChanges() == 1)
@@ -108,7 +109,6 @@ namespace MK_KupSkorer.Services
         {
             try
             {
-
                 using (var ctx = new ApplicationDbContext())
                 {
                     var kupToDelete = ctx.Kups.Find(kupId);

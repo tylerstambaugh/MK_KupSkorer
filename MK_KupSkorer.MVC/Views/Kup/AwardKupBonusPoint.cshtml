@@ -1,0 +1,28 @@
+﻿@model MK_KupSkorer.Models.KupModels.KupBonusPoint
+
+@{
+    ViewBag.Title = "Award Kup Bonus Point";
+}
+
+<div class="update-race">
+    <h2>Award Bonuis Point </h2>
+    <p>Select the Bonus Point Winner</p>
+    <h3>Kup ID: @Model.KupId </h3>
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.KupId)
+
+        <label for="Winner">Bonus Point Winner</label>
+        <select id="BonusPointPlayerId" name="BonusPointPlayerId">
+            <option value="none" selected disabled hidden>Select Bonus Point Winner</option>
+
+            @foreach (var p in ViewData["Players"] as IEnumerable<SelectListItem>)
+            {
+                <option value=@p.Value>@p.Text</option>
+            }
+            <option value="-1">None</option>
+        </select>
+        <input type="submit" name="ReviewKup" class="btn btn-primary" formaction="@Url.Action("ReviewKup", "kup")" formmethod="post"/>
+    </form>
+</div>

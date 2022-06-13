@@ -54,15 +54,39 @@ namespace MK_KupSkorer.MVC.Controllers
             
         }
 
+        [HttpGet]
+        public ActionResult AwardKupBonusPoint(int kupId)
+        {
+            ViewData["Players"] = new SelectList(_playerService.GetPlayerListByKupId(kupId), "PlayerId", "FirstName");
+            KupBonusPoint model = new KupBonusPoint
+            {
+                KupId = kupId
+            };
+            return View(model);
+        }
 
-        [HttpGet] //GET /kup/ReviewKup
-        public ActionResult ReviewKup(int kupId)
+        [HttpPost]
+        public ActionResult AwardKupBonusPoint(KupBonusPoint model)
+        {
+            if (model.BonusPointPlayerId > -2)
+            {
+                return RedirectToAction("ReviewKup", "kup", model);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+
+        [HttpPost] //GET /kup/ReviewKup
+        public ActionResult ReviewKup(KupBonusPoint model)
         {
             //get list of races for the kup
-            var raceList = _raceService.GetRaceDetailListByKupId(kupId);
+            var raceList = _raceService.GetRaceDetailListByKupId(model.KupId);
 
             //get list of Players for the kup
-            var playerList = _playerService.GetPlayerListByKupId(kupId);
+            var playerList = _playerService.GetPlayerListByKupId(model.KupId);
 
             //create list of PlayerKupReviewList obj that will be passed to the view
             List<PlayerKupReviewListItem> playerKupReviewList = new List<PlayerKupReviewListItem>();
@@ -93,11 +117,11 @@ namespace MK_KupSkorer.MVC.Controllers
                 }
             }
 
-            //figure out who to award the bonus point to:
-            int bonusPointWinner = _kupService.RewardBonusPoint(kupId);
-            if (bonusPointWinner != -1)
+            //award the bonus point:
+            if (model.BonusPointPlayerId > 0)
             {
-                playerKupReviewList.Single(p => p.PlayerId == bonusPointWinner).PlayerKupBonusPoints = 1;
+                int bonusPointWinner = model.BonusPointPlayerId;
+                playerKupReviewList.Single(p => p.PlayerId == bonusPointWinner).PlayerKupBonusPoints += 1;
             }
 
             //Also update the total points and wins for the player
